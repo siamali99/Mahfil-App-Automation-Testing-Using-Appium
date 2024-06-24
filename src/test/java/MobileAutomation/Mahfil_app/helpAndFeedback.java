@@ -17,37 +17,37 @@ import io.appium.java_client.AppiumBy;
 
 public class helpAndFeedback extends configAppium{
 	
-//	 @BeforeClass
-//	 public void generalLogin() {
-//			driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//			//Scroll to sign in button
-//			boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
-//			//click on sign in button
-//			String text=driver.findElement(By.xpath("//android.widget.ScrollView/android.widget.ImageView[9]")).getAttribute("contentDescription");
-//			System.out.println(text);
-//			if(text.equals("Logout"))
-//			{
-//				driver.findElement(AppiumBy.accessibilityId("Logout")).click();
-//				driver.findElement(AppiumBy.accessibilityId("Yes")).click();
-//				driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
-//			}
-//			else
-//			{
-//				driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
-//			}
-//			
-//			driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
-//			WebElement email=driver.findElement(By.className("android.widget.EditText"));
-//			email.click();
-//			email.sendKeys("general.mahfil@gmail.com");
-//			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-//			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
-//			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
-//			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
-//			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
-//			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-//			driver.navigate().back();
-//	 }
+	 @BeforeClass
+	 public void generalLogin() {
+			driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
+			//Scroll to sign in button
+			boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
+			//click on sign in button
+			String text=driver.findElement(By.xpath("//android.widget.ScrollView/android.widget.ImageView[9]")).getAttribute("contentDescription");
+			System.out.println(text);
+			if(text.equals("Logout"))
+			{
+				driver.findElement(AppiumBy.accessibilityId("Logout")).click();
+				driver.findElement(AppiumBy.accessibilityId("Yes")).click();
+				driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
+			}
+			else
+			{
+				driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
+			}
+			
+			driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
+			WebElement email=driver.findElement(By.className("android.widget.EditText"));
+			email.click();
+			email.sendKeys("general.mahfil@gmail.com");
+			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
+			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
+			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
+			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
+			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+			driver.navigate().back();
+	 }
 	
 	@BeforeMethod
 	public void menu() {
