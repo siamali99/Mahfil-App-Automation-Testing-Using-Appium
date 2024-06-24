@@ -209,11 +209,11 @@ public class helpAndFeedback extends configAppium{
 		driver.findElement(AppiumBy.accessibilityId("Send")).click();
 		driver.navigate().back();
 		String actualToast=driver.findElement(By.xpath("(//android.view.View)[18]")).getAttribute("contentDescription");
-		String expectedToast="Fields are incorrect";
+		String expectedToast="Report sending failed";
 		Assert.assertEquals(actualToast,expectedToast,"Title didn't matched");
 	}
 	
-	@Test(priority=9, description="Help and feedback Testcase 09: Check question is not sent by giving spaces in other fields in Help and feedback page",groups= {"general"})
+	@Test(priority=10, description="Help and feedback Testcase 10: Check question is not sent by giving spaces in other fields in Help and feedback page",groups= {"general"})
 	public void FAQCheck6() {
 		 WebElement email=driver.findElement(By.xpath("(//android.widget.EditText)[1]"));
 		 email.click();
@@ -221,7 +221,7 @@ public class helpAndFeedback extends configAppium{
 		 boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",1.0));
 		 WebElement name=driver.findElement(By.xpath("(//android.widget.EditText)[2]"));
 		 name.click();
-		 name.sendKeys("    ");
+		 name.sendKeys("siam");
 		 WebElement subject=driver.findElement(By.xpath("(//android.widget.EditText)[3]"));
 		 subject.click();
 		 subject.sendKeys("    ");
@@ -231,7 +231,30 @@ public class helpAndFeedback extends configAppium{
 		driver.findElement(AppiumBy.accessibilityId("Send")).click();
 		driver.navigate().back();
 		String actualToast=driver.findElement(By.xpath("(//android.view.View)[18]")).getAttribute("contentDescription");
-		String expectedToast="Fields are incorrect";
+		String expectedToast="Report sending failed";
 		Assert.assertEquals(actualToast,expectedToast,"Title didn't matched");
 	}
+	
+	@Test(priority=11, description="Help and feedback Testcase 11: Check question is  sent by giving  valid input in Help and feedback page",groups= {"general"})
+	public void FAQCheck7() {
+		 WebElement email=driver.findElement(By.xpath("(//android.widget.EditText)[1]"));
+		 email.click();
+		 email.sendKeys("siam@gmail.com");
+		 boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",1.0));
+		 WebElement name=driver.findElement(By.xpath("(//android.widget.EditText)[2]"));
+		 name.click();
+		 name.sendKeys("siam");
+		 WebElement subject=driver.findElement(By.xpath("(//android.widget.EditText)[3]"));
+		 subject.click();
+		 subject.sendKeys("test");
+		 WebElement description=driver.findElement(By.xpath("(//android.widget.EditText)[4]"));
+		 description.click();
+		 description.sendKeys("test");
+		driver.findElement(AppiumBy.accessibilityId("Send")).click();
+//		driver.navigate().back();
+		String actualToast=driver.findElement(By.xpath("(//android.view.View)[6]")).getAttribute("contentDescription");
+		String expectedToast="Report sending successful";
+		Assert.assertEquals(actualToast,expectedToast,"Title didn't matched");
+	}
+	
 }
