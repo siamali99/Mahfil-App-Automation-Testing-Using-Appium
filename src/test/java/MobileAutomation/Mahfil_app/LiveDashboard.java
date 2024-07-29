@@ -7,6 +7,7 @@ import java.awt.event.InputEvent;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -40,8 +41,16 @@ public class LiveDashboard extends configAppium{
 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
 		}
 		
-		driver.findElement(AppiumBy.accessibilityId("Continue with Google")).click();
-		driver.findElement(By.xpath("(//android.widget.LinearLayout[@resource-id='com.google.android.gms:id/container'])[1]")).click();
+		driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
+		WebElement email=driver.findElement(By.className("android.widget.EditText"));
+		email.click();
+		email.sendKeys("general.mahfil@gmail.com");
+		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
+		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
 		driver.navigate().back();
 	}
 	

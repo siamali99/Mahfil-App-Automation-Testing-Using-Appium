@@ -9,7 +9,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
-
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -19,6 +20,7 @@ public class configAppium {
 	
 	public AndroidDriver driver;
 	public AppiumDriverLocalService service;
+//	public WebDriver chromeDriver;
 	
 	@BeforeTest
 	public void config() throws MalformedURLException {
@@ -26,8 +28,8 @@ public class configAppium {
 		service.start();
 		UiAutomator2Options options= new UiAutomator2Options();
 		options.setDeviceName("device1");
-		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_testserverV2.3.2.apk");
-		
+		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_testserverV2.4.1.apk");
+//		chromeDriver = new ChromeDriver();
 		options.setCapability("noReset", true);
 		driver= new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 		

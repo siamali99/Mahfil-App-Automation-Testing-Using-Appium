@@ -39,9 +39,17 @@ public class Downloads extends configAppium{
  		{
  			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
  		}
- 		driver.findElement(AppiumBy.accessibilityId("Continue with Google")).click();
-		driver.findElement(By.xpath("(//android.widget.LinearLayout[@resource-id='com.google.android.gms:id/container'])[1]")).click();
-	    driver.navigate().back();
+		driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
+		WebElement email=driver.findElement(By.className("android.widget.EditText"));
+		email.click();
+		email.sendKeys("general.mahfil@gmail.com");
+		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
+		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+		driver.navigate().back();
 	 }
 	 
 	 @BeforeGroups(value = "premium")
@@ -63,18 +71,17 @@ public class Downloads extends configAppium{
  			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
  		}
  		
- 		driver.findElement(AppiumBy.accessibilityId("Continue another way")).click();
- 		driver.findElement(AppiumBy.accessibilityId("Log in with Mobile")).click();
- 		WebElement number=driver.findElement(By.className("android.widget.EditText"));
- 		number.click();
- 		number.sendKeys("1842908695");
- 		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
- 		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
- 		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
- 		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
- 		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
- 		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
- 		driver.navigate().back();
+		driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
+		WebElement email=driver.findElement(By.className("android.widget.EditText"));
+		email.click();
+		email.sendKeys("premium.mahfil@gmail.com");
+		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
+		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
+		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+		driver.navigate().back();
 	 }
 	 
 	                
@@ -132,7 +139,7 @@ public class Downloads extends configAppium{
 		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
 	}
 	
-	@Test(priority=4, description="Download Testcase 04:Check downloaded video saved on downloads",groups="general")
+	@Test(priority=4, description="Download Testcase 04:Check downloaded video saved on downloads",groups="premium")
 	public void downloadCheck() throws InterruptedException {
 		//Scroll down and download a video
 		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",6.0));
