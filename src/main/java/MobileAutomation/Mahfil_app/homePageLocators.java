@@ -9,6 +9,7 @@ import org.testng.Assert;
 import com.google.common.collect.ImmutableMap;
 
 import MobileAutomation.Mahfil_app.utils.AndroidActions;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -32,6 +33,10 @@ public class homePageLocators extends AndroidActions{
 	//Notification Page locators
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[3]")
 	private WebElement notificationButton;
+	@AndroidFindBy(xpath="(//android.view.View)[5]")
+	private WebElement notificationPageTitle;
+	
+	
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[3]")
 	private WebElement SignupPageTitle;
 	
@@ -50,9 +55,16 @@ public class homePageLocators extends AndroidActions{
 	@AndroidFindBy(xpath="(//android.view.View)[6]")
 	private WebElement channelPageTitle;
 	
-	//Notification Page locators
+	//subscribe button locators
 	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.widget.ImageView)[1]")
 	private WebElement subscribeButton;
+	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.widget.ImageView)[1]")
+	private WebElement subscribeButtonTitle;
+	@AndroidFindBy(accessibility = "Yes")
+	private WebElement yesButton;
+
+
+	
 	
 	//elipsis button locators
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[5]")
@@ -76,6 +88,16 @@ public class homePageLocators extends AndroidActions{
 	@AndroidFindBy(xpath="(//android.widget.ScrollView//android.view.View)[3]")
 	private WebElement video;
 	
+	//Video player identifer Related Videos
+//	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView//android.widget.ImageView)[4]")
+	@AndroidFindBy(accessibility = "Related Videos")
+	private WebElement videoPlayerPageTitle;
+	
+	//premium pop up identifier
+	@AndroidFindBy(xpath="(//android.widget.Button)")
+	private WebElement premiumPopUpTitle;
+	
+	//CLicks
 	public void clickMenu() {
 		menuButton.click();
 	}
@@ -101,6 +123,14 @@ public class homePageLocators extends AndroidActions{
 		subscribeButton.click();
 	}
 	
+	public void clickUnSubscribe() throws InterruptedException {
+		subscribeButton.click();
+//		Thread.sleep(500);
+		yesButton.click();
+//		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
+//		driver.findElement(AppiumBy.accessibilityId("Yes")).click();
+	}
+	
 	public void Scroll(int times) {
 		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",times));
 	}
@@ -114,17 +144,28 @@ public class homePageLocators extends AndroidActions{
 	public void clickFavourite() {
 		addFavouriteButton.click();
 	}
-	public void clickReport() {
+	
+	
+	public void clickReportbutton() {
 		reportButton.click();
 	}
+	public void report() {
+		driver.findElement(AppiumBy.accessibilityId("Spam or misleading")).click();
+		driver.findElement(AppiumBy.accessibilityId("Report")).click();
+		
+	}
 	
-	public void playPremiumVideo() {
+	public void playVideo() throws InterruptedException {
+		video.click();
+//		Thread.sleep(2000);
+	}
+	
+	public void findPremiumVideo() throws InterruptedException {
 		while(true)
 		{
 			String text=video.getAttribute("contentDescription");
-			if(text.contains("Premium"))
+			if(text.contains("Premium") && text.contains("views"))
 			{
-				video.click();
 				break;
 			}
 			else
@@ -134,21 +175,22 @@ public class homePageLocators extends AndroidActions{
 		}
 	}
 	
-	public void playGeneralVideo() {
+	public void findGeneralVideo() throws InterruptedException {
+//		Scroll(2);
 		while(true)
 		{
 			String text=video.getAttribute("contentDescription");
-			if(text.contains("Premium"))
+			if(text.contains("views") && !text.contains("Premium"))
 			{
-				Scroll(1);
+				break;
 			}
 			else
 			{
-				video.click();
-				break;
+				Scroll(1);
 			}
 		}
 	}
+	
 	
 	
 	public void checkTitle(String page, String title) {
@@ -172,6 +214,30 @@ public class homePageLocators extends AndroidActions{
 		else if(page.equals("sharePageTitle"))
 		{
 			actualTitle=sharePageTitle.getText();
+		}
+		else if(page.equals("videoPlayerPageTitle"))
+		{
+			actualTitle=videoPlayerPageTitle.getAttribute("contentDescription");
+		}
+		else if(page.equals("notificationPageTitle"))
+		{
+			actualTitle=notificationPageTitle.getAttribute("contentDescription");
+		}
+		else if(page.equals("subscribeButtonTitle"))
+		{
+			actualTitle=subscribeButtonTitle.getAttribute("contentDescription");
+		}
+		else if(page.equals("addFavouriteButton"))
+		{
+			actualTitle=addFavouriteButton.getAttribute("contentDescription");
+		}
+		else if(page.equals("reportButton"))
+		{
+			actualTitle=reportButton.getAttribute("contentDescription");
+		}
+		else if(page.equals("premiumPopUpTitle"))
+		{
+			actualTitle=premiumPopUpTitle.getAttribute("contentDescription");
 		}
 		System.out.println(actualTitle);
 		String expectedTitle=title;

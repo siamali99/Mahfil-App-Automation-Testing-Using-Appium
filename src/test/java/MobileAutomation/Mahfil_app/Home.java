@@ -113,7 +113,7 @@ public class Home extends configAppium{
 	}
 	
 	@Test(priority=2, description="Home Testcase 02: Check notification is not accessable",groups= {"guest"})
-	public void notificationButtonCheck() {
+	public void guestnotificationButtonCheck() {
 		home.clickNotification();
 		//passing exoected page and page title
 		home.checkTitle("SignupPageTitle","Continue with Google");
@@ -140,158 +140,185 @@ public class Home extends configAppium{
 	}
 	
 	
-	@Test(priority=6, description="Home Testcase 06: Check video is shareable as a guest user",groups= {"guest"})
-	public void guestShareButtonCheck() throws InterruptedException {
-		home.Scroll(8);
+	@Test(priority=6, description="Home Testcase 06: Check general video is shareable as a guest user",groups= {"guest"})
+	public void guestGeneralVideoShareCheck() throws InterruptedException {
+//		home.Scroll(8);
+		home.findGeneralVideo();
 		home.clickElipsis();
 		home.clickShare();
 		home.checkTitle("sharePageTitle","Sharing link");
 		}
 	
-	@Test(priority=7, description="Home Testcase 07: Check ad video favourite is not working as a guest user",groups= {"guest"})
-	public void guestAdFavButtonCheck() throws InterruptedException {
+	@Test(priority=7, description="Home Testcase 07: Check premium video is shareable as a guest user",groups= {"guest"})
+	public void guestPremiumVideoShareCheck() throws InterruptedException {
 //		home.Scroll(8);
+		home.findPremiumVideo();
+		home.clickElipsis();
+		home.clickShare();
+		home.checkTitle("sharePageTitle","Sharing link");
+		}
+	
+	@Test(priority=8, description="Home Testcase 08: Check general video ad video favourite is not working as a guest user",groups= {"guest"})
+	public void guestGeneralVideoAdFavCheck() throws InterruptedException {
+//		home.Scroll(8);
+		home.findGeneralVideo();
 		home.clickElipsis();
 		home.clickFavourite();
 		home.checkTitle("SignupPageTitle","Continue with Google");
 		}
 	
-	@Test(priority=8, description="Home Testcase 08: Check video report is not working as a guest user",groups= {"guest"})
-	public void guestReportButtonCheck() throws InterruptedException {
+	@Test(priority=9, description="Home Testcase 09: Check premium video ad video favourite is not working as a guest user",groups= {"guest"})
+	public void guestPremiumVideoAdFavCheck() throws InterruptedException {
 //		home.Scroll(8);
+		home.findPremiumVideo();
 		home.clickElipsis();
-		home.clickReport();
+		home.clickFavourite();
 		home.checkTitle("SignupPageTitle","Continue with Google");
 		}
 	
-	@Test(priority=9, description="Home Testcase 09: Check premium video is not playable as a guest user",groups= {"guest"})
+	@Test(priority=10, description="Home Testcase 10: Check video report is not working as a guest user",groups= {"guest"})
+	public void guestGeneralVideoReportCheck() throws InterruptedException {
+//		home.Scroll(8);
+		home.findGeneralVideo();
+		home.clickElipsis();
+		home.clickReportbutton();
+		home.checkTitle("SignupPageTitle","Continue with Google");
+		}
+	
+	
+	@Test(priority=11, description="Home Testcase 11: Check premium video report is not working as a guest user",groups= {"guest"})
+	public void guestPremiumVideoReportCheck() throws InterruptedException {
+//		home.Scroll(8);
+		home.findPremiumVideo();
+		home.clickElipsis();
+		home.clickReportbutton();
+		home.checkTitle("SignupPageTitle","Continue with Google");
+		}
+	
+	@Test(priority=12, description="Home Testcase 12: Check premium video is not playable as a guest user",groups= {"guest"})
 	public void guestPremiumVideoPlay() throws InterruptedException {
-		home.playPremiumVideo();
+		home.findPremiumVideo();
+		home.playVideo();
 		home.checkTitle("SignupPageTitle","Continue with Google");
 	
 	}
 	
-	@Test(priority=10, description="Home Testcase 10: Check general video is playable as a guest user",groups= {"guest"})
+	@Test(priority=13, description="Home Testcase 13: Check general video is playable as a guest user",groups= {"guest"})
 	public void guestGeneralVideoPlay() throws InterruptedException {
-		home.playGeneralVideo();
-		home.checkTitle("SignupPageTitle","Continue with Google");
+		home.findGeneralVideo();
+		home.playVideo();
+		home.checkTitle("videoPlayerPageTitle","Related Videos");
 	
 	}
 	
+	@Test(priority=14, description="Home Testcase 14: Check notification is accessable",groups= {"general"})
+	public void notificationButtonCheck() {
+		home.clickNotification();
+		//passing exoected page and page title
+		home.checkTitle("notificationPageTitle","Notifications");
+	}
+	
+	@Test(priority=15, description="Home Testcase 15: Check subscribe button is working",groups= {"general"})
+	public void SubscribeButtonCheck() throws InterruptedException {
+		home.clickSubscribe();
+		home.checkTitle("subscribeButtonTitle","Subscribed");
+	}
+	
+	@Test(priority=16, description="Home Testcase 16: Check unsubscribe button is working",groups= {"general"})
+	public void unSubscribeButtonCheck() throws InterruptedException {
+		home.clickUnSubscribe();
+		home.checkTitle("subscribeButtonTitle","Subscribe");
+	}
 	
 	
-//	@Test(priority=1, description="Access menu options as signout user")
-//	public void navigate_menu() throws InterruptedException {
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
+	@Test(priority=17, description="Home Testcase 17: Check general video ad to favourite is working",groups= {"general"})
+	public void generalVideoAdFavButtonCheck() throws InterruptedException {
+//		home.Scroll(7);
+		home.findGeneralVideo();
+		home.clickElipsis();
+		home.clickFavourite();
+		home.clickElipsis();
+		home.checkTitle("addFavouriteButton"," Remove from Favorite");
+		}
+	
+	@Test(priority=18, description="Home Testcase 18: Check general video remove from  favourite is working",groups= {"general"})
+	public void generalVideoremoveFavButtonCheck() throws InterruptedException {
+//		home.Scroll(7);
+		home.findGeneralVideo();
+		home.clickElipsis();
+		home.clickFavourite();
 //		Thread.sleep(1000);
-//		driver.navigate().back();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-//		Thread.sleep(1000);
-//		driver.navigate().back();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[6]")).click();
-//		Thread.sleep(1000);
-//		driver.navigate().back();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[7]")).click();
-//		Thread.sleep(1000);
-//		driver.navigate().back();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).click();
-//		Thread.sleep(1000);
-//		driver.navigate().back();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
-//	}
-//	
-//	@Test(priority=2 ,description="Header notification,search and menu button check")
-//	public void headerbuttoncheck() throws InterruptedException {
-////		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[3]")).click();
-//		Thread.sleep(1000);
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//	}
-//	
-//	@Test(priority=3, description="Subscribe and unsubscribe from popular channel")
-//	public void subscriptionbutton() {
-//		driver.findElement(By.xpath("(//android.widget.ImageView[@content-desc=\"Subscribe\"])[1]")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView[@content-desc=\"Subscribe\"])[2]")).click();
-////		driver.findElement(By.xpath("(//android.widget.ImageView[@content-desc=\"Subscribe\"])[3]")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView[@content-desc=\"Subscribed\"])[1]")).click();
-//		driver.findElement(AppiumBy.accessibilityId("Yes")).click();
-//	}
-//	
-//	@Test(priority=4, description="Open salat reminder page from home page and return to home page")
-//	public void prayerbuttoncheck() {
-//		driver.findElement(AppiumBy.accessibilityId("All prayer times")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//		
-//	}
-//	
-//	@Test(priority=5, description="add favourite,share, report from home")
-//	public void videoOptionCheck() {
-//		//scroll down to find a video
-//		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",5.0));
-//		//open options
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-//		//add favourite
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-//		//open options
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-//		//click Share and copy link
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//		driver.findElement(AppiumBy.accessibilityId("Copy")).click();
-//		//open options
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-//		//click report choose others and report button click
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[3]")).click();
-//		driver.findElement(AppiumBy.accessibilityId("Others")).click();
-//		WebElement otherbox=driver.findElement(By.className("android.widget.EditText"));
-//		otherbox.click();
-//		otherbox.sendKeys("This is not good");
-//		driver.navigate().back();
-//		driver.findElement(AppiumBy.accessibilityId("Report")).click();
-//
-//		
-//	}
-//	
-//	@Test(priority=6, description="Scroll down and play a video")
-//	public void scrollandplay() throws InterruptedException {
-//		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
-//
-//		driver.findElement(By.xpath("(//android.view.View)[2]")).click();
-//		Thread.sleep(5000);
-//		driver.navigate().back();
-//		}
-//	@Test(priority=7, description="Check add subscribed channel and add favourites video")
-//	public void checkaddfavouriteandsub() throws InterruptedException {
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[6]")).click();
-//		Thread.sleep(1000);
-//		driver.navigate().back();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[7]")).click();
-//		Thread.sleep(1000);
-//		driver.navigate().back();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
-//	}
-//	@Test
-//	public void home() {
-//		
-//		while(true)
-//		{
-//			String test=driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).getAttribute("bounds");
-//			if(test.equals("[476,181][964,305]"))
-//					{
-//				break;
-//					}
-//			else
-//			{
-//				driver.navigate().back();
-//			}
-//	
-//			
-//		}
-//
-//	}
+		home.clickElipsis();
+		home.checkTitle("addFavouriteButton","Add to Favourite");
+		}
+	
+	
+	@Test(priority=19, description="Home Testcase 19: Check general user can not ad premium video to favourite",groups= {"general"})
+	public void premumVideoAdFavButtonCheck() throws InterruptedException {
+//		home.Scroll(7);
+		home.findPremiumVideo();
+		home.clickElipsis();
+		home.clickFavourite();
+		home.checkTitle("premiumPopUpTitle","আজই প্রিমিয়াম কিনুন");
+		}
+	
+	@Test(priority=20, description="Home Testcase 20: Check general user can not report premium video",groups= {"general"})
+	public void premumVideoReportCheck() throws InterruptedException {
+//		home.Scroll(7);
+		home.findPremiumVideo();
+		home.clickElipsis();
+		home.clickReportbutton();
+		home.checkTitle("premiumPopUpTitle","আজই প্রিমিয়াম কিনুন");
+		}
+	
+	@Test(priority=21, description="Home Testcase 21: Check general user can report general video",groups= {"general"})
+	public void generalVideoReportCheck() throws InterruptedException {
+//		home.Scroll(7);
+		home.findGeneralVideo();
+		home.clickElipsis();
+		home.clickReportbutton();
+		home.report();
+		home.clickElipsis();
+		home.checkTitle("reportButton","Already Reported");
+		}
+	
+	@Test(priority=22, description="Home Testcase 22: Check general user can not play premium video",groups= {"general"})
+	public void premumVideoplayCheckByGeneralUser() throws InterruptedException {
+//		home.Scroll(7);
+		home.findPremiumVideo();
+		home.playVideo();
+		home.checkTitle("premiumPopUpTitle","আজই প্রিমিয়াম কিনুন");
+		}
+	
+	
+	@Test(priority=23, description="Home Testcase 23: Check premium user can ad premium video to favourite",groups= {"premium"})
+	public void premumVideoAdFavCheckByPremiumUser() throws InterruptedException {
+		home.findPremiumVideo();
+		home.clickElipsis();
+		home.clickFavourite();
+		home.clickElipsis();
+		home.checkTitle("addFavouriteButton"," Remove from Favorite");
+		}
+	
+	@Test(priority=24, description="Home Testcase 24: Check premium user can ad premium video to favourite",groups= {"premium"})
+	public void premumVideoReportCheckByPremiumUser() throws InterruptedException {
+		home.findPremiumVideo();
+		home.clickElipsis();
+		home.clickReportbutton();
+		home.report();
+		home.clickElipsis();
+		home.checkTitle("reportButton","Already Reported");
+		}
+	@Test(priority=25, description="Home Testcase 25: Check premium user can  play premium video",groups= {"premium"})
+	public void premumVideoplayCheckByPremiumUser() throws InterruptedException {
+		home.findPremiumVideo();
+		home.playVideo();
+		home.checkTitle("videoPlayerPageTitle","Related Videos");
+		}
+
+	
+	
+	
+
 	
 }
