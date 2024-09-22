@@ -3,15 +3,21 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="MobileAutomation.Mahfil_app.premiumUserFunctionality">
+      <class name="MobileAutomation.Mahfil_app.LiveDashboard">
         <methods>
           <include name="home"/>
+          <include name="adFavCheck"/>
+          <include name="reportCheck"/>
+          <include name="unsubscribeButtonCheck"/>
+          <include name="before"/>
+          <include name="searchButtonCheck"/>
+          <include name="channelNameCheck"/>
+          <include name="subscribeButtonCheck"/>
+          <include name="removeFavCheck"/>
           <include name="config"/>
-          <include name="livedashboardSearch"/>
-          <include name="beforemethod"/>
           <include name="closeConnection"/>
         </methods>
-      </class> <!-- MobileAutomation.Mahfil_app.premiumUserFunctionality -->
+      </class> <!-- MobileAutomation.Mahfil_app.LiveDashboard -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

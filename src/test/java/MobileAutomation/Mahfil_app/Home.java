@@ -81,6 +81,8 @@ public class Home extends configAppium{
 			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
 			driver.navigate().back();
 	 }
+	 
+//		public homePageLocators home;
 	 @BeforeMethod
 	 public void before() {
 		 home=new homePageLocators(driver);

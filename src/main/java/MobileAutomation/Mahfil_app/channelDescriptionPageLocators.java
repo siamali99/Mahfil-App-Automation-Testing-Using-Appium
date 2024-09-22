@@ -25,6 +25,8 @@ public class channelDescriptionPageLocators extends AndroidActions{
 	//Popular channel locators
 	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.view.View)[2]")
 	private WebElement popularChannelButton;
+	@AndroidFindBy(xpath="(//android.view.View)[12]")
+	private WebElement premiumPopularChannelButton;
 	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.view.View)[3]")
 	private WebElement popularChannelName;
 	@AndroidFindBy(xpath="(//android.view.View)[6]")
@@ -50,13 +52,13 @@ public class channelDescriptionPageLocators extends AndroidActions{
 	//subscribe button locators
 	@AndroidFindBy(accessibility="Subscribe")
 	private WebElement subscribeButton;
-	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.widget.ImageView)[1]")
+	@AndroidFindBy(accessibility="Subscribed")
+	private WebElement subscribedButton;
+	@AndroidFindBy(xpath="(//android.widget.ImageView)[4]")
 	private WebElement subscribeButtonTitle;
 	@AndroidFindBy(accessibility = "Yes")
 	private WebElement yesButton;
 
-
-	
 	
 	//elipsis button locators
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[5]")
@@ -80,15 +82,26 @@ public class channelDescriptionPageLocators extends AndroidActions{
 	@AndroidFindBy(xpath="(//android.widget.ScrollView//android.view.View)[6]")
 	private WebElement video;
 	
+	
 	//Video player identifer Related Videos
 //	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView//android.widget.ImageView)[4]")
 	@AndroidFindBy(accessibility = "Related Videos")
 	private WebElement videoPlayerPageTitle;
 	
+	//Video cut button premim
+	@AndroidFindBy(xpath="//android.widget.Button[2]")
+	private WebElement cutVideo;
 	//premium pop up identifier
 	@AndroidFindBy(xpath="(//android.widget.Button)")
 	private WebElement premiumPopUpTitle;
 	
+	//playlist locators
+	@AndroidFindBy(xpath="(//android.view.View)[12]")
+	private WebElement playlistTab;
+	@AndroidFindBy(xpath="(//android.widget.ImageView)[5]")
+	private WebElement playlist;
+	@AndroidFindBy(accessibility = "Playlist Videos")
+	private WebElement playlistPlayerPageTitle;
 
 	public void clickNotification() {
 		notificationButton.click();
@@ -107,16 +120,19 @@ public class channelDescriptionPageLocators extends AndroidActions{
 		popularChannelButton.click();
 	}
 	
+	public void clickPopularChannelPremium() {
+		
+		premiumPopularChannelButton.click();
+	}
+	
 	public void clickSubscribe() {
 		subscribeButton.click();
 	}
 	
 	public void clickUnSubscribe() throws InterruptedException {
-		subscribeButton.click();
-//		Thread.sleep(500);
+		subscribedButton.click();
 		yesButton.click();
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-//		driver.findElement(AppiumBy.accessibilityId("Yes")).click();
+
 	}
 	
 	public void Scroll(int times) {
@@ -148,6 +164,12 @@ public class channelDescriptionPageLocators extends AndroidActions{
 //		Thread.sleep(2000);
 	}
 	
+	public void stopVideo() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.navigate().back();
+		cutVideo.click();
+	}
+	
 	public void findPremiumVideo() throws InterruptedException {
 		while(true)
 		{
@@ -177,6 +199,15 @@ public class channelDescriptionPageLocators extends AndroidActions{
 				Scroll(1);
 			}
 		}
+	}
+	
+	public void clickPlaylistTab() throws InterruptedException {
+		Thread.sleep(2000);
+		playlistTab.click();
+	}
+	
+	public void clickPlaylist() {
+		playlist.click();
 	}
 	
 	
@@ -222,6 +253,10 @@ public class channelDescriptionPageLocators extends AndroidActions{
 		else if(page.equals("premiumPopUpTitle"))
 		{
 			actualTitle=premiumPopUpTitle.getAttribute("contentDescription");
+		}
+		else if(page.equals("playlistPlayerPageTitle"))
+		{
+			actualTitle=playlistPlayerPageTitle.getAttribute("contentDescription");
 		}
 		System.out.println(actualTitle);
 		String expectedTitle=title;

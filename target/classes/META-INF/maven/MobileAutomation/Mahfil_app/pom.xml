@@ -32,6 +32,19 @@
     <version>7.7.1</version>
 </dependency>
 
+  	<dependency>
+  		<groupId>project1</groupId>
+  		<artifactId>project1</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	
+  	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-support</artifactId>
+    <version>4.19.1</version>
+</dependency>
+
   </dependencies>
 
   <build>

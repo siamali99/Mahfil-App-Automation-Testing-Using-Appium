@@ -19,71 +19,79 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class Downloads extends configAppium{
 
-	private AndroidDriver androidDriver;
-	 @BeforeGroups(value = "general")
-	    public void beforeGeneral() {
- 		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
- 		//Scroll to sign in button
- 		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
- 		//click on sign in button
- 		String text=driver.findElement(By.xpath("//android.widget.ScrollView/android.widget.ImageView[9]")).getAttribute("contentDescription");
- 		System.out.println(text);
- 		if(text.equals("Logout"))
- 		{
- 			
- 			driver.findElement(AppiumBy.accessibilityId("Logout")).click();
- 			driver.findElement(AppiumBy.accessibilityId("Yes")).click();
- 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
- 		}
- 		else
- 		{
- 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
- 		}
-		driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
-		WebElement email=driver.findElement(By.className("android.widget.EditText"));
-		email.click();
-		email.sendKeys("general.mahfil@gmail.com");
-		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
-		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
-		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
-		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
-		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-		driver.navigate().back();
+//	private AndroidDriver androidDriver;
+//	 @BeforeGroups(value = "general")
+//	    public void beforeGeneral() {
+// 		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
+// 		//Scroll to sign in button
+// 		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
+// 		//click on sign in button
+// 		String text=driver.findElement(By.xpath("//android.widget.ScrollView/android.widget.ImageView[9]")).getAttribute("contentDescription");
+// 		System.out.println(text);
+// 		if(text.equals("Logout"))
+// 		{
+// 			
+// 			driver.findElement(AppiumBy.accessibilityId("Logout")).click();
+// 			driver.findElement(AppiumBy.accessibilityId("Yes")).click();
+// 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
+// 		}
+// 		else
+// 		{
+// 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
+// 		}
+//		driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
+//		WebElement email=driver.findElement(By.className("android.widget.EditText"));
+//		email.click();
+//		email.sendKeys("general.mahfil@gmail.com");
+//		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+//		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
+//		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
+//		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
+//		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
+//		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+//		driver.navigate().back();
+//	 }
+//	 
+//	 @BeforeGroups(value = "premium")
+//	 public void beforePremium() {
+//		 driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
+// 		//Scroll to sign in button
+// 		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
+// 		//click on sign in button
+// 		String text=driver.findElement(By.xpath("//android.widget.ScrollView/android.widget.ImageView[9]")).getAttribute("contentDescription");
+// 		System.out.println(text);
+// 		if(text.equals("Logout"))
+// 		{
+// 			driver.findElement(AppiumBy.accessibilityId("Logout")).click();
+// 			driver.findElement(AppiumBy.accessibilityId("Yes")).click();
+// 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
+// 		}
+// 		else
+// 		{
+// 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
+// 		}
+// 		
+//		driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
+//		WebElement email=driver.findElement(By.className("android.widget.EditText"));
+//		email.click();
+//		email.sendKeys("premium.mahfil@gmail.com");
+//		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+//		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
+//		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
+//		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
+//		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
+//		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
+//		driver.navigate().back();
+//	 }
+	public downloadLocators download;
+	public menuPageLocators menu;
+	 @BeforeMethod
+	 public void before() throws InterruptedException {
+		 download=new downloadLocators(driver);
+		 menu=new menuPageLocators(driver);
+		 menu.clickMenu();
+		 Thread.sleep(200);
 	 }
-	 
-	 @BeforeGroups(value = "premium")
-	 public void beforePremium() {
-		 driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
- 		//Scroll to sign in button
- 		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
- 		//click on sign in button
- 		String text=driver.findElement(By.xpath("//android.widget.ScrollView/android.widget.ImageView[9]")).getAttribute("contentDescription");
- 		System.out.println(text);
- 		if(text.equals("Logout"))
- 		{
- 			driver.findElement(AppiumBy.accessibilityId("Logout")).click();
- 			driver.findElement(AppiumBy.accessibilityId("Yes")).click();
- 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
- 		}
- 		else
- 		{
- 			driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
- 		}
- 		
-		driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
-		WebElement email=driver.findElement(By.className("android.widget.EditText"));
-		email.click();
-		email.sendKeys("premium.mahfil@gmail.com");
-		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
-		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
-		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
-		driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
-		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-		driver.navigate().back();
-	 }
-	 
 	                
 
 	@AfterMethod
@@ -105,38 +113,31 @@ public class Downloads extends configAppium{
 	
 	
 	@Test(priority=1, description="Download Testcase 01:Check generel users can't access downloads",groups="general")
-	public void downloadButtonCheck_general() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		String pageTitle=driver.findElement(By.xpath("//android.widget.Button")).getAttribute("contentDescription");
-		System.out.println(pageTitle);
-		String expectedTitle="আজই প্রিমিয়াম কিনুন";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	public void downloadButtonCheck_general() throws InterruptedException {
+		
+		menu.clickDownload();
+		menu.checkTitle("premiumPopUpTitle","আজই প্রিমিয়াম কিনুন");
 	}
 	
 	@Test(priority=2, description="Download Testcase 02:Check premium popup close button is working in downloads",groups="general")
 	public void premiumcloseButtonCheck() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-//		System.out.println(pageTitle);
-		String expectedTitle="Others";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+		menu.clickDownload();
+		menu.closePremiumPopUp();
+		menu.checkTitle("menuTitle","Others");
 	}
 	
 	@Test(priority=3, description="Download Testcase 03:Check premium users can access downloads",groups="premium")
-	public void dashboardButtonCheck_premium() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		System.out.println(pageTitle);
-		String expectedTitle="Downloaded Videos";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	public void dashboardButtonCheck_premium() throws InterruptedException {
+		menu.clickDownload();
+		download.checkTitle("downloadPageTitle", "Downloaded Videos");
+		
+//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
+//		//CLick on Downloads button
+//		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
+//		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
+//		System.out.println(pageTitle);
+//		String expectedTitle="Downloaded Videos";
+//		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
 	}
 	
 	@Test(priority=4, description="Download Testcase 04:Check downloaded video saved on downloads",groups="premium")
