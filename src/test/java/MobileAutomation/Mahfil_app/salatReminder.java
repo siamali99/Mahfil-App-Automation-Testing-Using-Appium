@@ -7,11 +7,24 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
 
 public class salatReminder extends configAppium{
+	public menuPageLocators menu;
+	public homePageLocators home;
+	public videoPlayerLocator videoPlayer;
+	public salatReminderLocators salatReminder;
+	 @BeforeMethod
+	 public void before() throws InterruptedException {
+
+		 menu=new menuPageLocators(driver);
+		 home=new homePageLocators(driver);
+		 salatReminder=new salatReminderLocators(driver);
+		 Thread.sleep(200);
+	 }
 	
 	@AfterMethod
 	public void home() {
@@ -31,89 +44,75 @@ public class salatReminder extends configAppium{
 	}
 	
 	@Test(priority=1, description="Salat Reminder Testcase 01: Check Salat Reminder button is working",groups= {"general","premium"})
-	public void salatReminderButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[6]")).getAttribute("contentDescription");
-		String expectedTitle="Salat Time";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	public void salatReminderButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSalatReminder();
+		salatReminder.checkTitle("salatReminderPageTitle", "Salat Time");
 	}
 	
 	@Test(priority=2, description="Salat Reminder Testcase 02: Check back button is working from Salat Reminder page",groups= {"general","premium"})
-	public void backButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		String expectedTitle="Others";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	public void backButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSalatReminder();
+		salatReminder.clickBackButton();
+		menu.checkTitle("menuTitle","Others");
 		
 	}
 	
-	@Test(priority=3, description="Salat Reminder Testcase 03: Check reminder switch button is working from Salat Reminder page",groups= {"general","premium"})
-	public void reminderSwitchbuttonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
-		String state1=driver.findElement(By.xpath("(//android.widget.Switch)[1]")).getAttribute("checked");
-		System.out.println(state1);
-		driver.findElement(By.xpath("(//android.widget.Switch)[1]")).click();
-		String state2=driver.findElement(By.xpath("(//android.widget.Switch)[1]")).getAttribute("checked");
-		System.out.println(state2);
-		driver.findElement(By.xpath("(//android.widget.Switch)[1]")).click();
-		Assert.assertNotEquals(state1,state2,"Title matched");
+	@Test(priority=3, description="Salat Reminder Testcase 03: Check reminder switch button turns off in Salat Reminder page",groups= {"general","premium"})
+	public void reminderSwitchbuttonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSalatReminder();
+		salatReminder.clickReminder();
+		salatReminder.checkTitle("reminderButton", "false");
 		
 	}
 	
 	
 	@Test(priority=4, description="Salat Reminder Testcase 04: Check turning off reminder switch button turns off all other salat switches in Salat Reminder page",groups= {"general","premium"})
-	public void reminderSwitchbuttoncheck2() {
-		 String[] arr= new String[5];
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
-		driver.findElement(By.xpath("(//android.widget.Switch)[1]")).click();
-		String state1=driver.findElement(By.xpath("(//android.widget.Switch)[1]")).getAttribute("checked");
-		System.out.println(state1);
-		for(int i=2;i<=6;i++)
-		{
-			arr[i-2]=driver.findElement(By.xpath("(//android.widget.Switch)["+i+"]")).getAttribute("checked");
-			Assert.assertEquals(state1,arr[i-2],"Title didn't matched");
-		}
-
+	public void reminderSwitchbuttoncheck2() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSalatReminder();
+		salatReminder.checkTitle("reminderButtonFajr", "false");
+		salatReminder.checkTitle("reminderButtonDhuhr", "false");
+		salatReminder.checkTitle("reminderButtonAsr", "false");
+		salatReminder.checkTitle("reminderButtonMaghrib", "false");
+		salatReminder.checkTitle("reminderButtonIsha", "false");
 		
 	}
 	
 	@Test(priority=5, description="Salat Reminder Testcase 05: Check turning on reminder switch button  turns on all other salat switches in Salat Reminder page",groups= {"general","premium"})
-	public void reminderSwitchbuttoncheck3() {
-		 String[] arr= new String[5];
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
-		driver.findElement(By.xpath("(//android.widget.Switch)[1]")).click();
-		String state1=driver.findElement(By.xpath("(//android.widget.Switch)[1]")).getAttribute("checked");
-		System.out.println(state1);
-		for(int i=2;i<=6;i++)
-		{
-			arr[i-2]=driver.findElement(By.xpath("(//android.widget.Switch)["+i+"]")).getAttribute("checked");
-			Assert.assertEquals(state1,arr[i-2],"Title didn't matched");
-		}
-	
+	public void reminderSwitchbuttoncheck3() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSalatReminder();
+		salatReminder.clickReminder();
+		salatReminder.checkTitle("reminderButton", "true");
+		salatReminder.checkTitle("reminderButtonFajr", "true");
+		salatReminder.checkTitle("reminderButtonDhuhr", "true");
+		salatReminder.checkTitle("reminderButtonAsr", "true");
+		salatReminder.checkTitle("reminderButtonMaghrib", "true");
+		salatReminder.checkTitle("reminderButtonIsha", "true");
 	}
 	
 	
 	@Test(priority=6, description="Salat Reminder Testcase 06: Check turning on reminder shows set reminder pop up and on time reminder button is working",groups= {"general","premium"})
 	public void reminderSwitchbuttoncheck4() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
+		home.clickMenu();
+		menu.clickSalatReminder();
+		salatReminder.clickFajr();
 		Thread.sleep(500);
+		salatReminder.clickFajr();
 		driver.findElement(By.xpath("(//android.widget.Switch)[2]")).click();
 		driver.findElement(By.xpath("(//android.widget.Switch)[2]")).click();
-		String actualTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		String expectedTitle="Set Reminder";
-		Assert.assertEquals(actualTitle,expectedTitle, "Title didn't matched");
-		driver.findElement(AppiumBy.accessibilityId("On Time Reminder")).click();
+		salatReminder.checkTitle("reminderTitle", "Set Reminder");
+		salatReminder.clickOnTimeReminder();
 	}
+
 	
 	@Test(priority=7, description="Salat Reminder Testcase 07: Check set reminder time buttons are working",groups= {"general","premium"})
-	public void reminderSwitchbuttoncheck5() {
+	public void reminderSwitchbuttoncheck5() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSalatReminder();
 		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
 		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
 //		driver.findElement(By.xpath("(//android.widget.Switch)[2]")).click();

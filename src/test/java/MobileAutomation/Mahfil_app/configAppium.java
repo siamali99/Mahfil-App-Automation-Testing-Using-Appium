@@ -28,7 +28,12 @@ public class configAppium {
 		service.start();
 		UiAutomator2Options options= new UiAutomator2Options();
 		options.setDeviceName("device1");
-		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_testserverV2.6.0..apk");
+		//Azure live server
+//		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_azure_testserver.apk");
+		//Aws apk
+//		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_testserverV2.7.1.apk");
+		//Azure apk 
+//		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\azure server app.apk");
 //		chromeDriver = new ChromeDriver();
 		options.setCapability("noReset", true);
 		driver= new AndroidDriver(new URL("http://127.0.0.1:4723"), options);

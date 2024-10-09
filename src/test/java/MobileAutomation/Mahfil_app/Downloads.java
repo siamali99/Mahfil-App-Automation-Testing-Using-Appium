@@ -85,11 +85,14 @@ public class Downloads extends configAppium{
 //	 }
 	public downloadLocators download;
 	public menuPageLocators menu;
+	public homePageLocators home;
+	public videoPlayerLocator videoPlayer;
 	 @BeforeMethod
 	 public void before() throws InterruptedException {
 		 download=new downloadLocators(driver);
 		 menu=new menuPageLocators(driver);
-		 menu.clickMenu();
+		 home=new homePageLocators(driver);
+		 videoPlayer=new videoPlayerLocator(driver);
 		 Thread.sleep(200);
 	 }
 	                
@@ -110,111 +113,76 @@ public class Downloads extends configAppium{
 	
 		}
 	}
-	
-	
 	@Test(priority=1, description="Download Testcase 01:Check generel users can't access downloads",groups="general")
+	public void downloadButtonCheckguest() throws InterruptedException {
+		home.clickMenu();
+		menu.clickDownload();
+		menu.checkTitle("SignupPageTitle","Continue with Google");
+	}
+	
+	@Test(priority=2, description="Download Testcase 01:Check generel users can't access downloads",groups="general")
 	public void downloadButtonCheck_general() throws InterruptedException {
-		
+		home.clickMenu();
 		menu.clickDownload();
 		menu.checkTitle("premiumPopUpTitle","আজই প্রিমিয়াম কিনুন");
 	}
 	
-	@Test(priority=2, description="Download Testcase 02:Check premium popup close button is working in downloads",groups="general")
+	@Test(priority=3, description="Download Testcase 02:Check premium popup close button is working in downloads",groups="general")
 	public void premiumcloseButtonCheck() throws InterruptedException {
+		home.clickMenu();
 		menu.clickDownload();
 		menu.closePremiumPopUp();
 		menu.checkTitle("menuTitle","Others");
 	}
 	
-	@Test(priority=3, description="Download Testcase 03:Check premium users can access downloads",groups="premium")
+	@Test(priority=4, description="Download Testcase 03:Check premium users can access downloads",groups="premium")
 	public void dashboardButtonCheck_premium() throws InterruptedException {
+		home.clickMenu();
 		menu.clickDownload();
 		download.checkTitle("downloadPageTitle", "Downloaded Videos");
-		
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-//		//CLick on Downloads button
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-//		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-//		System.out.println(pageTitle);
-//		String expectedTitle="Downloaded Videos";
-//		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+
 	}
 	
-	@Test(priority=4, description="Download Testcase 04:Check downloaded video saved on downloads",groups="premium")
+	@Test(priority=5, description="Download Testcase 04:Check downloaded video saved on downloads",groups="premium")
 	public void downloadCheck() throws InterruptedException {
-		//Scroll down and download a video
-		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",6.0));
-//		String playvideoTitle=driver.findElement(By.xpath("(//android.view.View)[9]")).getAttribute("contentDescription");
-		driver.findElement(By.xpath("(//android.view.View)[9]")).click();
-		Thread.sleep(4000);
-		//video pause 
-		driver.findElement(By.xpath("(//android.view.View)[18]")).click();
-		Thread.sleep(500);
-		driver.findElement(AppiumBy.accessibilityId("DOWNLOAD")).click();
-		Thread.sleep(5000);
-		driver.navigate().back();
-		Thread.sleep(2000);
+		
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.downloadVideo();
+		videoPlayer.stopVideo();
+		home.clickMenu();
+		menu.checkTitle("downloadButton","Downloads\n"
+				+ "1 videos Downloaded");
+	}
+	
+	@Test(priority=6, description="Download Testcase 05:Check downloaded video is playable",groups="premium")
+	public void downloadvideoplaycheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickDownload();
+		download.playDownloadedVideo();
+		videoPlayer.checkTitle("videoPlayerPageTitle","Related Videos");
 
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		Thread.sleep(1000);
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		System.out.println("Video downloaded");
-//		String videoTitle=driver.findElement(By.xpath("(//android.view.View)[9]")).getAttribute("contentDescription");
-//		System.out.println(videoTitle);
-//		Assert.assertEquals(playvideoTitle,videoTitle,"Title didn't matched");
-//		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
 	}
 	
-	@Test(priority=5, description="Download Testcase 05:Check downloaded video is playable",groups="premium")
-	public void downloadvideoplaycheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		driver.findElement(By.xpath("(//android.view.View)[8]")).click();
-		System.out.println("Video played");
-	}
-	
-	@Test(priority=6, description="Download Testcase 06:Check downloaded video is playable in offline",groups="premium")
+	@Test(priority=7, description="Download Testcase 06:Check downloaded video is playable in offline",groups="premium")
 	public void offlinedownloadvideoplaycheck() throws InterruptedException {
-//		androidDriver = (AndroidDriver) driver;
-//        androidDriver.openNotifications();
-//        Thread.sleep(2000);
-        ((AndroidDriver) driver).toggleWifi();
-        Thread.sleep(2000);
-        driver.findElement(AppiumBy.accessibilityId("See Downloaded videos")).click();
-        driver.findElement(By.xpath("(//android.view.View)[8]")).click();
-        ((AndroidDriver) driver).toggleWifi();
-        Thread.sleep(5000);
-        System.out.println("downloaded video played offline");
-
+		download.toggleInternet();
+		download.clickSeeDownloadedVideo();
+		download.playDownloadedVideo();
+		download.toggleInternet();
+	
 	}
 	
-	@Test(priority=7, description="Download Testcase 07:Check ellipsis button is working",groups="premium")
-	public void ellipsisButtonCheck() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		String actualTitle=driver.findElement(By.xpath("(//android.widget.Button)[1]")).getAttribute("contentDescription");
-		System.out.println(actualTitle);
-		String expectedTitle="Remove";
-		Assert.assertEquals(actualTitle,expectedTitle,"Title didn't matched");
-		driver.navigate().back();
-
-	}
 	
 	@Test(priority=8, description="Download Testcase 08:Check remove button is working",groups="premium")
 	public void removeButtonCheck() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		driver.findElement(By.xpath("(//android.widget.Button)[1]")).click();
-//		String actualTitle=driver.findElement(By.xpath("(//android.widget.Button)[1]")).getAttribute("contentDescription");
-		System.out.println("Video removed");
-
-
+		home.clickMenu();
+		menu.clickDownload();
+		download.clickEllipsis();
+		download.clickRemove();
+		Thread.sleep(1000);
+//		menu.checkTitle("emptyDownloadPageTitle","Videos you download will appear here!");
+		
 	}
 	
 	

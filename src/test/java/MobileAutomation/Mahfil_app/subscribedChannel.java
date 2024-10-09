@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableMap;
@@ -47,7 +48,17 @@ public class subscribedChannel extends configAppium{
 //		driver.navigate().back();
 //	}
 	
-	
+	public menuPageLocators menu;
+	public homePageLocators home;
+	public subscribedChannelLocators subscribedChannel;
+	 @BeforeMethod
+	 public void before() throws InterruptedException {
+
+		 menu=new menuPageLocators(driver);
+		 home=new homePageLocators(driver);
+		 subscribedChannel=new subscribedChannelLocators(driver);
+		 Thread.sleep(200);
+	 }
 
 
 	@AfterMethod
@@ -66,74 +77,65 @@ public class subscribedChannel extends configAppium{
 	
 		}
 	}
-	@Test(priority=1, description="Subscribed Channel Testcase 01: Check Subscribed Channel button is working",groups= {"general","premium"})
-	public void subscribedChannelButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		String expectedTitle="Subscribed Channels";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	
+	@Test(priority=1, description="Subscribed Channel Testcase 01: Check Guest user cannot access Subscribed Channel",groups= {"guest"})
+	public void guestFavouriteButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSubscribedChannel();
+		menu.checkTitle("SignupPageTitle","Continue with Google");
+	} 
+	
+	@Test(priority=2, description="Subscribed Channel Testcase 02 Check Subscribed Channel button is working",groups= {"general","premium"})
+	public void subscribedChannelButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSubscribedChannel();
+		subscribedChannel.checkTitle("subscribedChannelPageTitle", "Subscribed Channels");
 	}
 	
-	@Test(priority=2, description="Subscribed Channel Testcase 02: Check notification button is working in Subscribed Channel page",groups= {"general","premium"})
-	public void notificationButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		String expectedTitle="Notifications";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	@Test(priority=3, description="Subscribed Channel Testcase 03: Check notification button is working in Subscribed Channel page",groups= {"general","premium"})
+	public void notificationButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSubscribedChannel();
+		subscribedChannel.clickNotification();
+		subscribedChannel.checkTitle("notificationPageTitle", "Notifications");
 	}
 	
-	@Test(priority=3, description="Subscribed Channel Testcase 03: Check search button is working in Subscribed Channel page",groups= {"general","premium"})
-	public void searchButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[3]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[7]")).getAttribute("contentDescription");
-		String expectedTitle="Popular Search";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	@Test(priority=4, description="Subscribed Channel Testcase 04: Check search button is working in Subscribed Channel page",groups= {"general","premium"})
+	public void searchButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickSubscribedChannel();
+		subscribedChannel.clickSearch();
+		subscribedChannel.checkTitle("searchPageTitle", "Popular Search");
 	}
 	
-	@Test(priority=4, description="Subscribed Channel Testcase 04: Check back button is working from Subscribed Channel page",groups= {"general","premium"})
-	public void backButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		String expectedTitle="Others";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	@Test(priority=5, description="Subscribed Channel Testcase 05: Check back button is working from Subscribed Channel page",groups= {"general","premium"})
+	public void backButtonCheck() throws InterruptedException {
+		
+		home.clickMenu();
+		menu.clickSubscribedChannel();
+		subscribedChannel.clickBackButton();
+		menu.checkTitle("menuTitle","Others");
 	}
 	
-	@Test(priority=5, description="Subscribed Channel Testcase 05: Check subscribed channe is shown in Subscribed Channel page",groups= {"general","premium"})
-	public void subscriptionChannelCheck() {
-		String actualTitle=driver.findElement(By.xpath("(//android.view.View)[15]")).getAttribute("contentDescription");
-		System.out.println(actualTitle);
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-//		driver.findElement(AppiumBy.accessibilityId("Yes")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).click();
-		driver.findElement(By.xpath("(//android.view.View)[8]")).click();
-		String foundTitle=driver.findElement(By.xpath("(//android.view.View)[6]")).getAttribute("contentDescription");
-		System.out.println(foundTitle);
-		Assert.assertEquals(actualTitle,foundTitle,"Title didn't matched");
+	@Test(priority=6, description="Subscribed Channel Testcase 06: Check subscribed channe is shown in Subscribed Channel page",groups= {"general","premium"})
+	public void subscriptionChannelCheck() throws InterruptedException {
+		home.clickSubscribe();
+		home.clickMenu();
+		menu.clickSubscribedChannel();
+		subscribedChannel.clickBackButton();
+		menu.checkTitle("subscribedChannelButton","Subscribed Channel\n"
+				+ "1 Channels");
 	}
 
 	
-	@Test(priority=6, description="Subscribed Channel Testcase 05: Check channel unsubscribe is working in Subscribed Channel page",groups= {"general","premium"})
-	public void unsubscribeChannelCheck() {
+	@Test(priority=7, description="Subscribed Channel Testcase 07: Check channel unsubscribe is working in Subscribed Channel page",groups= {"general","premium"})
+	public void unsubscribeChannelCheck() throws InterruptedException {
 
+		home.clickMenu();
+		menu.clickSubscribedChannel();
+		subscribedChannel.clickSubscribed();
+		subscribedChannel.checkTitle("emptysubscribedChannelPageTitle", "Subscribed channel will appear here!");
 
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		String actualTitle=driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).getAttribute("contentDescription");
-		System.out.println(actualTitle);
-		driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).click();
-		driver.findElement(By.xpath("(//android.widget.Button[@content-desc=\"Subscribed\"])[1]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Yes")).click();
-		driver.navigate().back();
-		String foundTitle=driver.findElement(By.xpath("(//android.widget.ImageView)[8]")).getAttribute("contentDescription");
-		System.out.println(foundTitle);
-		Assert.assertNotEquals(actualTitle,foundTitle,"Title  matched");
 	}
 	
 	

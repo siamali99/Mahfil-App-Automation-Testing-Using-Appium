@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableMap;
@@ -45,7 +46,19 @@ public class watchHistory extends configAppium{
 //		driver.findElement(AppiumBy.accessibilityId("Continue")).click();
 //		driver.navigate().back();
 //	}
-	
+	public menuPageLocators menu;
+	public homePageLocators home;
+	public videoPlayerLocator videoPlayer;
+	public watchHistoryLocators watchHistory;
+	 @BeforeMethod
+	 public void before() throws InterruptedException {
+
+		 menu=new menuPageLocators(driver);
+		 home=new homePageLocators(driver);
+		 videoPlayer=new videoPlayerLocator(driver);
+		 watchHistory=new watchHistoryLocators(driver);
+		 Thread.sleep(200);
+	 }
 	
 
 
@@ -65,43 +78,43 @@ public class watchHistory extends configAppium{
 	
 		}
 	}
+	
+	@Test(priority=1, description="Watch History Testcase 01: Check Guest user cannot access Watch History",groups= {"guest"})
+	public void guestFavouriteButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickWatchHisotry();
+		menu.checkTitle("SignupPageTitle","Continue with Google");
+	}
 	@Test(priority=1, description="Watch History Testcase 01: Check Watch History button is working",groups= {"general","premium"})
-	public void dashboardButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[7]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		String expectedTitle="Watch History";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	public void dashboardButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickWatchHisotry();
+		watchHistory.checkTitle("watchHistoryPageTitle", "Watch History");
+
 	}
 	
 	@Test(priority=2, description="Watch History Testcase 02: Check notification button is working in Watch History page",groups= {"general","premium"})
-	public void notificationButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[7]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		String expectedTitle="Notifications";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	public void notificationButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickWatchHisotry();
+		watchHistory.clickNotification();
+		watchHistory.checkTitle("notificationPageTitle", "Notifications");
 	}
 	
 	@Test(priority=3, description="Watch History Testcase 03: Check search button is working in Watch History page",groups= {"general","premium"})
-	public void searchButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[7]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[3]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[7]")).getAttribute("contentDescription");
-		String expectedTitle="Popular Search";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	public void searchButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickWatchHisotry();
+		watchHistory.clickSearch();
+		watchHistory.checkTitle("searchPageTitle", "Popular Search");
 	}
 	
 	@Test(priority=4, description="Watch History Testcase 04: Check back button is working from Watch History page",groups= {"general","premium"})
-	public void backButtonCheck() {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[7]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		String pageTitle=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		String expectedTitle="Others";
-		Assert.assertEquals(pageTitle,expectedTitle,"Title didn't matched");
+	public void backButtonCheck() throws InterruptedException {
+		home.clickMenu();
+		menu.clickWatchHisotry();
+		watchHistory.clickBackButton();
+		menu.checkTitle("menuTitle","Others");
 	}
 	
 	
@@ -202,55 +215,21 @@ public class watchHistory extends configAppium{
 	
 	@Test(priority=7, description="Watch History Testcase 07: Check video added to Watch History are playable ",groups= {"general","premium"})
 	public void favouriteVideoPlay() throws InterruptedException {
-		//scroll down to find a video
-		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",5.0));
-		//open options
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		//add favourite
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[6]")).click();
-		driver.findElement(By.xpath("(//android.view.View)[8]")).click();
-		Thread.sleep(2000);
-		System.out.println("Video played");
+		home.clickMenu();
+		menu.clickWatchHisotry();
+		watchHistory.playwatchHistoryVideo();
+		videoPlayer.checkTitle("videoPlayerPageTitle","Related Videos");
+		videoPlayer.stopVideo();
 	}
-	
-	@Test(priority=8, description="Watch History Testcase 08:Check ellipsis button is working",groups="premium")
-	public void ellipsisButtonCheck() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[6]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-		String actualTitle=driver.findElement(By.xpath("(//android.widget.Button)[1]")).getAttribute("contentDescription");
-		System.out.println(actualTitle);
-		String expectedTitle="Remove";
-		Assert.assertEquals(actualTitle,expectedTitle,"Title didn't matched");
-		driver.navigate().back();
 
-	}
 	
 	@Test(priority=9, description="Watch History Testcase 09:Check remove button is working",groups="premium")
 	public void removeButtonCheck() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		//CLick on Downloads button
-		driver.findElement(By.xpath("(//android.widget.ImageView)[7]")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-		driver.findElement(By.xpath("(//android.widget.Button)[1]")).click();
-//		String actualTitle=driver.findElement(By.xpath("(//android.widget.Button)[1]")).getAttribute("contentDescription");
-		System.out.println("Video removed");
-
-
+		home.clickMenu();
+		menu.clickWatchHisotry();
+		watchHistory.clickEllipsis();
+		watchHistory.clickRemove();
 	}
 	
-//	@Test
-//	public void remove() throws InterruptedException {
-//
-//		for(int i=0;i<=30;i++)
-//		{
-//			driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-//			driver.findElement(By.xpath("(//android.widget.Button)[1]")).click();
-//			Thread.sleep(500);
-//		}
-//	}
+
 }
