@@ -15,7 +15,8 @@ public class authenticationLocators {
 		this.driver=driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
-	
+	@AndroidFindBy(accessibility="Continue with Google")
+	private WebElement SignupPageTitle;
 	//Continue with google locators
 	@AndroidFindBy(accessibility="Continue with Google")
 	private WebElement googleLogin;
@@ -136,7 +137,9 @@ public class authenticationLocators {
 		numberField.click();
 		numberField.sendKeys(number);
 	}
-	
+	public void back() throws InterruptedException {
+		driver.navigate().back();
+	}
 	public void checkTitle(String page, String title) {
 		String actualTitle="";
 		if(page.equals("errorMessageGoogle"))
@@ -162,6 +165,10 @@ public class authenticationLocators {
 		else if(page.equals("phonePage"))
 		{
 			actualTitle=phonePage.getAttribute("contentDescription");
+		}
+		else if(page.equals("SignupPageTitle"))
+		{
+			actualTitle=SignupPageTitle.getAttribute("contentDescription");
 		}
 		System.out.println(actualTitle);
 		String expectedTitle=title;

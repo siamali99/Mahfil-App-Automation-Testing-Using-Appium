@@ -1,348 +1,283 @@
 package MobileAutomation.Mahfil_app;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.google.common.collect.ImmutableMap;
+public class videoPlayer extends configAppium {
 
-import io.appium.java_client.AppiumBy;
+	public menuPageLocators menu;
+	public homePageLocators home;
+	public authenticationLocators authentication;
+	public videoPlayerLocator videoPlayer;
+	public beforeGroupActions before;
 
-public class videoPlayer extends configAppium{
-	String Actual,Expected;
+	@BeforeClass
+	public void before() throws InterruptedException {
+		menu = new menuPageLocators(driver);
+		home = new homePageLocators(driver);
+		authentication = new authenticationLocators(driver);
+		videoPlayer = new videoPlayerLocator(driver);
+		Thread.sleep(200);
+	}
 
-//	@BeforeTest(description="Scroll down a play a video ")
-//	public void playvideo() throws InterruptedException {
-//		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",5.0));
-//
-//		driver.findElement(By.xpath("(//android.view.View)[2]")).click();
-//		Thread.sleep(5000);
-//		}
-//	
-//	@BeforeMethod(description="Play and pause video, Enter and exit full screen")
-//	public void playpause() throws InterruptedException {
-//		driver.findElement(By.xpath("(//android.view.View)[2]")).click();
-//		Thread.sleep(5000);
-//		//video pause button check
-//		driver.findElement(By.xpath("(//android.view.View)[5]")).click();
-//		Thread.sleep(500);
-//		driver.findElement(By.xpath("(//android.view.View)[8]")).click();
-//		//Full screen play
-////		driver.findElement(By.xpath("(//android.view.View)[12]")).click();
-////		Thread.sleep(2000);
-////		driver.findElement(By.xpath("(//android.view.View)[11]")).click();
-//
-//	}
-//	
-//	@AfterMethod
-//	public void returnHome() {
-//		driver.navigate().back();
-//	}
-	
-	
-//	@BeforeClass
-	public void beforetest() {
-		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",5.0));
-		System.out.println("Scroll before test");
+	@BeforeGroups(value = "guest")
+	public void Guest() throws InterruptedException {
+		home.clickMenu();
+		menu.Scroll(2);
+		menu.clickLogout();
+		menu.back();
 	}
-	
-	
-	@AfterTest
-	public void aftertest() {
-		System.out.println("Test Done");
+
+	@BeforeGroups(value = "general")
+	public void General() throws InterruptedException {
+		home.clickMenu();
+		menu.Scroll(2);
+		menu.clickSignIn();
+		authentication.clickEmailLogin();
+		authentication.enterEmail("general.mahfil@gmail.com");
+		authentication.clickContinue();
+		authentication.enterOTP("0", "1", "1", "0");
+		authentication.clickContinue();
+		menu.checkTitle("authButton", "Logout");
 	}
-	
-	@BeforeMethod
-	public void beforemethod() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.view.View)[2]")).click();
-		Thread.sleep(5000);
-		//video pause button check
-		driver.findElement(By.xpath("(//android.view.View)[5]")).click();
-		Thread.sleep(500);
-		driver.findElement(By.xpath("(//android.view.View)[8]")).click();
-		Thread.sleep(100);
-		System.out.println("Play video Pause Video");
+
+	@BeforeGroups(value = "premium")
+	public void Premium() throws InterruptedException {
+		home.clickMenu();
+		menu.Scroll(2);
+		authentication.clickEmailLogin();
+		authentication.enterEmail("premium.mahfil@gmail.com");
+		authentication.clickContinue();
+		authentication.enterOTP("0", "1", "1", "0");
+		authentication.clickContinue();
+		menu.checkTitle("authButton", "Logout");
 	}
+
 	@AfterMethod
-	public void home() {
-		while(true)
-		{
-			String test=driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).getAttribute("bounds");
-			if(test.equals("[476,181][964,305]"))
-					{
-				break;
-					}
-			else
-			{
-				driver.navigate().back();
-			}
-	
-		}
-		System.out.println("Return Home");
-
-	}
-	
-	@Test(priority=3, description="Change playback speed, quality, audio, subtitle of video ")
-	public void threedotmenu() throws InterruptedException {
-		//three dot menu 
-		driver.findElement(By.xpath("(//android.view.View)[6]")).click();
-		//change playback speed
-		driver.findElement(AppiumBy.accessibilityId("Playback speed")).click();
-		driver.findElement(AppiumBy.accessibilityId("1.25 x")).click();
-		//subtitle
-		driver.findElement(By.xpath("(//android.view.View)[6]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Subtitles")).click();
-		driver.findElement(AppiumBy.accessibilityId("None")).click();
-		//Quality
-		driver.findElement(By.xpath("(//android.view.View)[6]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Quality")).click();
-		driver.findElement(AppiumBy.accessibilityId("1280x720 ~656 KBit/s ")).click();
-		//Audio
-		driver.findElement(By.xpath("(//android.view.View)[6]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Audio")).click();
-		driver.findElement(AppiumBy.accessibilityId("Default")).click();
-	}
-	
-	@Test(priority=4, description="Seek left right on video")
-	public void seek() {
-		driver.findElement(By.xpath("(//android.view.View)[9]")).click();
-		System.out.println("Seek right");
-		driver.findElement(By.xpath("(//android.view.View)[7]")).click();
-		System.out.println("Seek Left");
-	}
-	
-	
-	@Test(priority=5, description="Mute unmute of video")
-	public void muteUnmute() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.view.View)[11]")).click();
-		Thread.sleep(500);
-		driver.findElement(By.xpath("(//android.view.View)[11]")).click();
-	}
-	
-	@Test(priority=6, description="Video details button check and description")
-	public void videoDetailsbutton() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[1]")).click();
-
-	}
-	
-	@Test(priority=7, description="reactions and download button check")
-	public void ReactionAndDownload() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.widget.HorizontalScrollView//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.HorizontalScrollView//android.widget.ImageView)[2]")).click();
-		driver.findElement(By.xpath("(//android.widget.HorizontalScrollView//android.widget.ImageView)[3]")).click();
-		
-		try {
-			String desc= driver.findElement(AppiumBy.accessibilityId("Subscribe")).getAttribute("content-desc");
-			Thread.sleep(1000);
-			if(desc.equals("Subscribe"))
-			{
-				System.out.println(desc);
-//				driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-				driver.navigate().back();
-			}
-		} catch (NoSuchElementException e) {
-		    // Handle the exception or log the error
-		    System.out.println("Premium user ");
-		}
-		
-	}
-	
-	
-	@Test(priority=8, description="More button check")
-	public void morebutton() {
-		//open options
-		driver.findElement(By.xpath("(//android.widget.HorizontalScrollView//android.widget.ImageView)[4]")).click();
-		//add favourite
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		//open options
-		driver.findElement(By.xpath("(//android.widget.HorizontalScrollView//android.widget.ImageView)[4]")).click();
-		//click Share and copy link
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Copy")).click();
-		//open options
-		driver.findElement(By.xpath("(//android.widget.HorizontalScrollView//android.widget.ImageView)[4]")).click();
-		//click report choose others and report button click
-		driver.findElement(By.xpath("(//android.widget.ImageView)[3]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Others")).click();
-		WebElement otherbox=driver.findElement(By.className("android.widget.EditText"));
-		otherbox.click();
-		otherbox.sendKeys("This is not good");
-		driver.navigate().back();
-		driver.findElement(AppiumBy.accessibilityId("Report")).click();
-
-	}
-	@Test(priority=9, description="Make comments , like, dislike ,reply, edit and delete")
-	public void comment() throws InterruptedException {
-		String test=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[4]")).getAttribute("content-desc");
-		System.out.println(test);
-		driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[4]")).click();
-		
-		WebElement comment=driver.findElement(By.className("android.widget.EditText"));
-		comment.click();
-		comment.sendKeys("Alhamdulilah");
-		driver.findElement(By.xpath("//android.widget.ImageView")).click();
-		Thread.sleep(500);
-		//Like dislike comments
-		driver.findElement(By.xpath("(//android.widget.ImageView)[3]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-		Thread.sleep(500);
-		
-		//Reply
-		driver.findElement(By.xpath("(//android.view.View)[7]")).click();
-		WebElement reply=driver.findElement(By.className("android.widget.EditText"));
-		reply.click();
-		reply.sendKeys("Mashallah");
-		driver.findElement(By.xpath("//android.widget.ImageView")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[5]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[6]")).click();
-		//Edit reply
-		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Edit")).click();
-		driver.findElement(By.className("android.widget.EditText")).sendKeys(" mashallah");
-		driver.findElement(By.xpath("(//android.widget.EditText//android.widget.ImageView)[1]")).click();
-		//Delete reply
-		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Delete")).click();
-		driver.navigate().back();
-		//Edit
-		driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[4]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Edit")).click();
-		driver.findElement(By.className("android.widget.EditText")).sendKeys(" mashallah");
-		driver.findElement(By.xpath("(//android.widget.ImageView)[4]")).click();
-		Thread.sleep(1000);
-		//Delete
-		driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).click();
-		driver.findElement(AppiumBy.accessibilityId("Delete")).click();
-		Thread.sleep(500);
-		driver.navigate().back();
-		
+	public void home() throws InterruptedException {
+		videoPlayer.stopVideo();
 	}
 
-	//	@Test
-//	public void miniplayertest() throws InterruptedException {
-//		String access=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[1]")).getAttribute("content-desc");
-//		System.out.println(access);
-//		//goes miniplayer
-//		driver.findElement(By.xpath("(//android.view.View)[5]")).click();
-//		Thread.sleep(500);
-//		driver.findElement(By.xpath("//android.widget.Button")).click();
-//		//go back to default
-//		driver.findElement(AppiumBy.accessibilityId(access)).click();
-//	}
-//	
-//	
-//	@Test(priority=10,description="Scroll down in related videos and open channel on logo click")
-//	public void openChannelRealtedVideo() {
-////		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
-//		//click on channel logo
-//		String test=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[4]")).getAttribute("content-desc");
-//		System.out.println(test);
-//		driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[4]")).click();
-//	}
-
-	
-	
-	@Test(priority=10,description="Checking autoplay toast messages turn off")
-	public void autoplay1() {
-//		driver.findElement(By.xpath("(//android.view.View)[5]")).click();
-		driver.findElement(By.xpath("//android.widget.Switch")).click();
-		Actual=driver.findElement(AppiumBy.accessibilityId("Autoplay is off")).getAttribute("contentDescription");
-//		System.out.println(Actual);
-		String Expected="Autoplay is off";
-		Assert.assertEquals(Actual,Expected,"Toast didn't match");
+	@Test(priority = 1, description = "Check mashallah, like and download is not accessable by guest user", groups = {
+			"guest" })
+	public void reactionButtonCheckGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickMashallah();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
+		videoPlayer.clickLike();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
+		videoPlayer.clickDownload();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
 	}
-	
-	@Test(priority=10,description="Turn off auto play and seek to the last to see if the next video plays automatically")
-	public void autoplay3() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.view.View)[8]")).click();
-//		driver.findElement(By.xpath("//android.widget.Switch")).click();
-		String title1=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[1]")).getAttribute("contentDescription");
-		System.out.println(title1);
-		String info=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		while(true)
-		{
-			if(info.charAt(0)==info.charAt(8) && info.charAt(1)==info.charAt(9) && info.charAt(3)==info.charAt(11) && info.charAt(4)==info.charAt(12) )
-			{
-				break;
-			}
-			else {
-				Thread.sleep(500);
-				driver.findElement(By.xpath("(//android.view.View)[9]")).click();
-				info=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-			}
-//			System.out.println(info.length());
-////			for(int i=0;i<info.length())
-//			driver.findElement(By.xpath("//android.widget.Switch")).click();
-//			String Actual=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[1]")).getAttribute("contentDescription");
-//			System.out.println(Actual);
-		}
-		Thread.sleep(8000);
-		String title2=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[1]")).getAttribute("contentDescription");
-		System.out.println(title2);
-		Assert.assertEquals(title1,title2,"Title didn't matched");
-		
+
+	@Test(priority = 2, description = "Check guest user can not share video", groups = { "guest" })
+	public void shareButtonCheckGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickMore();
+		videoPlayer.clickShare();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
 	}
-	
-	
-	@Test(priority=10,description="Checking autoplay toast messages on turn on")
-	public void autoplay2() {
-//		driver.findElement(By.xpath("(//android.view.View)[5]")).click();
-		driver.findElement(By.xpath("//android.widget.Switch")).click();
-		Actual=driver.findElement(AppiumBy.accessibilityId("Autoplay is on")).getAttribute("contentDescription");
-//		System.out.println(Actual);
-		Expected="Autoplay is on";
-		Assert.assertEquals(Actual,Expected,"Toast didn't match");
+
+	@Test(priority = 3, description = "Check guest user can not add video to favourte ", groups = { "guest" })
+	public void favouriteButtonCheckGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickMore();
+		videoPlayer.clickFavourite();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
+	}
+
+	@Test(priority = 4, description = "Check guest user can not report video", groups = { "guest" })
+	public void reportButtonCheckGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickMore();
+		videoPlayer.clickReportbutton();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
+	}
+
+	@Test(priority = 5, description = "Check guest user cann't subscribe channel", groups = { "guest" })
+	public void subscribeButtonGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickSubscribe();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
+	}
+
+	@Test(priority = 6, description = "Check guest user cann't comment", groups = { "guest" })
+	public void commentCheckGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickComment();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
+	}
+
+	@Test(priority = 7, description = "Check guest user can share related video", groups = { "guest" })
+	public void relatedVideoShareGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.Scroll(3);
+		videoPlayer.clickRelatedVideoElipsis();
+		videoPlayer.clickRelatedVideoShare();
+		videoPlayer.checkTitle("sharePageTitle", "Sharing link");
+		videoPlayer.back();
+	}
+
+	@Test(priority = 8, description = "Check guest user can not add video to favourite from related section", groups = {
+			"guest" })
+	public void relatedVideoFavouriteGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.Scroll(3);
+		videoPlayer.clickRelatedVideoElipsis();
+		videoPlayer.clickRelatedVideoAddToFavourite();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
+	}
+
+	@Test(priority = 9, description = "Check guest user can not report video from related section", groups = {
+			"guest" })
+	public void relatedVideoReportGuest() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.Scroll(3);
+		videoPlayer.clickRelatedVideoElipsis();
+		videoPlayer.clickRelatedVideoReport();
+		authentication.checkTitle("SignupPageTitle", "Continue with Google");
+		authentication.back();
+	}
+
+	@Test(priority = 10, description = "Check mashallah, like is accessable by general user", groups = { "general" })
+	public void reactionButtonCheck() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickMashallah();
+		videoPlayer.clickLike();
+	}
+
+	@Test(priority = 11, description = "Check download is not accessable by general user", groups = { "general" })
+	public void downloadButtonCheckGeneral() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickDownload();
+		videoPlayer.checkTitle("premiumPopUpTitle", "আজই প্রিমিয়াম কিনুন");
+		videoPlayer.back();
+	}
+
+	@Test(priority = 12, description = "Check general user can share video", groups = { "general" })
+	public void shareButtonCheckGeneral() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickMore();
+		videoPlayer.clickShare();
+		videoPlayer.checkTitle("sharePageTitle", "Sharing link");
+		videoPlayer.back();
+	}
+
+	@Test(priority = 13, description = "Check general user can  add video to favourte ", groups = { "general" })
+	public void favouriteButtonCheck() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickMore();
+		videoPlayer.clickFavourite();
+		videoPlayer.clickMore();
+		videoPlayer.checkTitle("addFavouriteButton", " Remove from Favorite");
+		videoPlayer.back();
+	}
+
+	@Test(priority = 14, description = "Check general user can report video", groups = { "general" })
+	public void reportButtonCheck() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickMore();
+		videoPlayer.clickReportbutton();
+		videoPlayer.report();
+		videoPlayer.clickMore();
+		videoPlayer.checkTitle("reportButton", "Already Reported");
+	}
+
+	@Test(priority = 15, description = "Check user can subscribe channel", groups = { "general" })
+	public void subscribeButton() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickSubscribe();
+		videoPlayer.checkTitle("subscribedButton", "Subscribed");
+	}
+
+	@Test(priority = 16, description = "Check user can unsubscribe channel", groups = { "general" })
+	public void unsubscribeButton() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickUnSubscribe();
+		videoPlayer.checkTitle("subscribeButton", "Subscribe");
+	}
+
+	@Test(priority = 17, description = "Check general user can comment", groups = { "general" })
+	public void commentCheck() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickComment();
+		videoPlayer.writeComment();
+	}
+
+	@Test(priority = 18, description = "Check general user can share related video", groups = { "general" })
+	public void relatedVideoShare() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.Scroll(3);
+		videoPlayer.clickRelatedVideoElipsis();
+		videoPlayer.clickRelatedVideoShare();
+		videoPlayer.checkTitle("sharePageTitle", "Sharing link");
+		videoPlayer.back();
+	}
+
+	@Test(priority = 19, description = "Check general user can  add video to favourite from related section", groups = {
+			"general" })
+	public void relatedVideoFavourite() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.Scroll(3);
+		videoPlayer.clickRelatedVideoElipsis();
+		videoPlayer.clickRelatedVideoAddToFavourite();
+		videoPlayer.clickRelatedVideoElipsis();
+		videoPlayer.checkTitle("addFavouriteButton", " Remove from Favorite");
+		videoPlayer.back();
+	}
+
+	@Test(priority = 20, description = "Check general user can report video from related section", groups = {
+			"general" })
+	public void relatedVideoReport() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.Scroll(3);
+		videoPlayer.clickRelatedVideoElipsis();
+		videoPlayer.clickRelatedVideoReport();
+		videoPlayer.report();
+		videoPlayer.clickRelatedVideoElipsis();
+		videoPlayer.checkTitle("reportButton", "Already Reported");
+		videoPlayer.back();
+	}
+
+	@Test(priority = 21, description = "Check download is  accessable by premium user", groups = { "premium" })
+	public void downloadButtonCheckPremium() throws InterruptedException {
+		home.findGeneralVideo();
+		home.playVideo();
+		videoPlayer.clickDownload();
+		videoPlayer.checkTitle("downloadConfirmation", "Download has started. Please wait a moment!");
 
 	}
-	
-	
-	@Test(priority=10,description="Turn off auto play and seek to the last to see if the next video plays automatically")
-	public void autoplay4() throws InterruptedException {
-		driver.findElement(By.xpath("(//android.view.View)[8]")).click();
-//		driver.findElement(By.xpath("//android.widget.Switch")).click();
-		String title1=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[1]")).getAttribute("contentDescription");
-		System.out.println(title1);
-		String info=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-		while(true)
-		{
-			if(info.charAt(0)==info.charAt(8) && info.charAt(1)==info.charAt(9) && info.charAt(3)==info.charAt(11) && info.charAt(4)==info.charAt(12) )
-			{
-				break;
-			}
-			else {
-				Thread.sleep(500);
-				driver.findElement(By.xpath("(//android.view.View)[9]")).click();
-				info=driver.findElement(By.xpath("(//android.view.View)[5]")).getAttribute("contentDescription");
-			}
-//			System.out.println(info.length());
-////			for(int i=0;i<info.length())
-//			driver.findElement(By.xpath("//android.widget.Switch")).click();
-//			String Actual=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[1]")).getAttribute("contentDescription");
-//			System.out.println(Actual);
-		}
-		Thread.sleep(8000);
-		String title2=driver.findElement(By.xpath("(//android.widget.ScrollView//android.view.View)[1]")).getAttribute("contentDescription");
-		System.out.println(title2);
-		Assert.assertNotEquals(title1,title2,"Title didn't matched");
-		
-	}
-	
 
-	
-	
-	
-	
-	
-
-	
-	
 }

@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-passed">Default suite</span>
+              <span class="suite-name border-skipped">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\alhas\AppData\Local\Temp\testng-eclipse--494576538\testng-customsuite.xml</span>
+                    <span>C:\Users\alhas\AppData\Local\Temp\testng-eclipse-1742133198\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -60,7 +60,7 @@
                 </li>
                 <li>
                   <a href="#" panel-name="group-Default_suite" class="navigator-link ">
-                    <span>0 groups</span>
+                    <span>1 group</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,21 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">1 method,  1 skipped,  </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    <span class="method-list-title skipped">Skipped methods</span>
+                    <span class="show-or-hide-methods skipped">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods skipped suite-Default_suite"> (hide)</a> <!-- hide-methods skipped suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods skipped suite-Default_suite"> (show)</a> <!-- show-methods skipped suite-Default_suite -->
                     </span>
-                    <div class="method-list-content passed suite-Default_suite">
+                    <div class="method-list-content skipped suite-Default_suite">
                       <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="MobileAutomation.Mahfil_app.login" class="method navigator-link" hash-for-method="login12">login12</a> <!-- method navigator-link -->
+                        <img src="skipped.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="MobileAutomation.Mahfil_app.videoPlayer" class="method navigator-link" hash-for-method="downloadButtonCheckGeneral">downloadButtonCheckGeneral</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Default_suite -->
+                    </div> <!-- method-list-content skipped suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -118,27 +118,67 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-passed">
+          <div class="suite-Default_suite-class-skipped">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">MobileAutomation.Mahfil_app.login</span>
+              <img src="skipped.png"/>
+              <span class="class-name">MobileAutomation.Mahfil_app.videoPlayer</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="login12">
-                  </a> <!-- login12 -->
-                  <span class="method-name">login12</span>
+                  <a name="downloadButtonCheckGeneral">
+                  </a> <!-- downloadButtonCheckGeneral -->
+                  <span class="method-name">downloadButtonCheckGeneral</span>
+                  <div class="stack-trace">java.lang.AssertionError: Title didn&apos;t matched expected [Logout] but found [Sign In]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failNotEquals(Assert.java:1577)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:149)
+	at org.testng.Assert.assertEquals(Assert.java:131)
+	at org.testng.Assert.assertEquals(Assert.java:655)
+	at MobileAutomation.Mahfil_app.menuPageLocators.checkTitle(menuPageLocators.java:211)
+	at MobileAutomation.Mahfil_app.videoPlayer.General(videoPlayer.java:44)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
+	at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:361)
+	at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:296)
+	at org.testng.internal.invokers.ConfigInvoker.invokeBeforeGroupsConfigurations(ConfigInvoker.java:150)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:585)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:829)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+	at org.testng.TestNG.runSuites(TestNG.java:1099)
+	at org.testng.TestNG.run(TestNG.java:1067)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+
+</div> <!-- stack-trace -->
                   <em>
-(Login TestCase 12:Keep the phone number field empty and try to login)                  </em>
+(Check download is not accessable by general user)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-passed -->
+          </div> <!-- suite-Default_suite-class-skipped -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\alhas\AppData\Local\Temp\testng-eclipse--494576538\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\alhas\AppData\Local\Temp\testng-eclipse-1742133198\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -147,11 +187,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;MobileAutomation.Mahfil_app.login&quot;&gt;
+      &lt;class name=&quot;MobileAutomation.Mahfil_app.videoPlayer&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;login12&quot;/&gt;
+          &lt;include name=&quot;downloadButtonCheckGeneral&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- MobileAutomation.Mahfil_app.login --&gt;
+      &lt;/class&gt; &lt;!-- MobileAutomation.Mahfil_app.videoPlayer --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -175,6 +215,14 @@
             <span class="header-content">Groups for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">general</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">downloadButtonCheckGeneral</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="times-Default_suite" class="panel">
@@ -193,14 +241,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'login12')
-data.setCell(0, 2, 'MobileAutomation.Mahfil_app.login')
-data.setCell(0, 3, 7434);
+data.setCell(0, 1, 'downloadButtonCheckGeneral')
+data.setCell(0, 2, 'MobileAutomation.Mahfil_app.videoPlayer')
+data.setCell(0, 3, 0);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 7 seconds</span>
+              <span class="suite-total-time">Total running time: 0 ms</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -215,39 +263,51 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">14 ignored methods</span>
+            <span class="header-content">20 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">MobileAutomation.Mahfil_app.login</span>
+              <span class="ignored-class-name">MobileAutomation.Mahfil_app.videoPlayer</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">login1</span>
+                <span class="ignored-method-name">reportButtonCheck</span>
                 <br/>
-                <span class="ignored-method-name">login16</span>
+                <span class="ignored-method-name">shareButtonCheckGuest</span>
                 <br/>
-                <span class="ignored-method-name">login15</span>
+                <span class="ignored-method-name">reportButtonCheckGuest</span>
                 <br/>
-                <span class="ignored-method-name">login5</span>
+                <span class="ignored-method-name">relatedVideoReport</span>
                 <br/>
-                <span class="ignored-method-name">login4</span>
+                <span class="ignored-method-name">unsubscribeButton</span>
                 <br/>
-                <span class="ignored-method-name">login3</span>
+                <span class="ignored-method-name">favouriteButtonCheckGuest</span>
                 <br/>
-                <span class="ignored-method-name">login2</span>
+                <span class="ignored-method-name">relatedVideoFavourite</span>
                 <br/>
-                <span class="ignored-method-name">login10</span>
+                <span class="ignored-method-name">relatedVideoFavouriteGuest</span>
                 <br/>
-                <span class="ignored-method-name">login8</span>
+                <span class="ignored-method-name">relatedVideoReportGuest</span>
                 <br/>
-                <span class="ignored-method-name">login7</span>
+                <span class="ignored-method-name">relatedVideoShare</span>
                 <br/>
-                <span class="ignored-method-name">login6</span>
+                <span class="ignored-method-name">commentCheck</span>
                 <br/>
-                <span class="ignored-method-name">login14</span>
+                <span class="ignored-method-name">reactionButtonCheck</span>
                 <br/>
-                <span class="ignored-method-name">login13</span>
+                <span class="ignored-method-name">favouriteButtonCheck</span>
                 <br/>
-                <span class="ignored-method-name">signup10</span>
+                <span class="ignored-method-name">shareButtonCheckGeneral</span>
+                <br/>
+                <span class="ignored-method-name">commentCheckGuest</span>
+                <br/>
+                <span class="ignored-method-name">reactionButtonCheckGuest</span>
+                <br/>
+                <span class="ignored-method-name">downloadButtonCheckPremium</span>
+                <br/>
+                <span class="ignored-method-name">subscribeButton</span>
+                <br/>
+                <span class="ignored-method-name">relatedVideoShareGuest</span>
+                <br/>
+                <span class="ignored-method-name">subscribeButtonGuest</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -259,26 +319,32 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">MobileAutomation.Mahfil_app.login</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">MobileAutomation.Mahfil_app.videoPlayer</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">config</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
-              <div class="configuration-method before">
+              <div class="configuration-class before">
                 <span class="method-name">before</span>
-                <span class="method-start">3556 ms</span>
-              </div> <!-- configuration-method before -->
+                <span class="method-start">6128 ms</span>
+              </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">login12</span>
-                <span class="method-start">10613 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">General</span>
+                <span class="method-start">7668 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">downloadButtonCheckGeneral</span>
+                <span class="method-start">32852 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">home</span>
-                <span class="method-start">18049 ms</span>
+                <span class="method-start">32856 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-test after">
                 <span class="method-name">closeConnection</span>
-                <span class="method-start">21684 ms</span>
+                <span class="method-start">36344 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

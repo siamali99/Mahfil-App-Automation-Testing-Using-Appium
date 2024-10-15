@@ -4,11 +4,15 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Locale;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
+
+import com.github.javafaker.Faker;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -20,6 +24,8 @@ public class configAppium {
 	
 	public AndroidDriver driver;
 	public AppiumDriverLocalService service;
+	Locale locale=Locale.of("en","IN");
+	Faker fake= new Faker(locale);
 //	public WebDriver chromeDriver;
 	
 	@BeforeTest
@@ -30,11 +36,9 @@ public class configAppium {
 		options.setDeviceName("device1");
 		//Azure live server
 //		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_azure_testserver.apk");
-		//Aws apk
-//		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_testserverV2.7.1.apk");
-		//Azure apk 
-//		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\azure server app.apk");
-//		chromeDriver = new ChromeDriver();
+
+		//Azure apk  test server
+		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\azure server app.apk");
 		options.setCapability("noReset", true);
 		driver= new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 		

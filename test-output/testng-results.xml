@@ -1,33 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="14" total="15" passed="1" failed="0" skipped="0">
+<testng-results ignored="20" total="21" passed="0" failed="0" skipped="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-10-09T13:49:06 BDT" name="Default suite" finished-at="2024-10-09T13:49:28 BDT" duration-ms="21872">
+  <suite started-at="2024-10-15T13:27:35 BDT" name="Default suite" finished-at="2024-10-15T13:28:12 BDT" duration-ms="36539">
     <groups>
+      <group name="general">
+        <method signature="videoPlayer.downloadButtonCheckGeneral()[pri:11, instance:MobileAutomation.Mahfil_app.videoPlayer@11fc564b]" name="downloadButtonCheckGeneral" class="MobileAutomation.Mahfil_app.videoPlayer"/>
+      </group> <!-- general -->
     </groups>
-    <test started-at="2024-10-09T13:49:06 BDT" name="Default test" finished-at="2024-10-09T13:49:28 BDT" duration-ms="21872">
-      <class name="MobileAutomation.Mahfil_app.login">
-        <test-method is-config="true" signature="config()[pri:0, instance:MobileAutomation.Mahfil_app.login@515c6049]" started-at="2024-10-09T13:49:06 BDT" name="config" finished-at="2024-10-09T13:49:10 BDT" duration-ms="3545" status="PASS">
+    <test started-at="2024-10-15T13:27:35 BDT" name="Default test" finished-at="2024-10-15T13:28:12 BDT" duration-ms="36539">
+      <class name="MobileAutomation.Mahfil_app.videoPlayer">
+        <test-method is-config="true" signature="config()[pri:0, instance:MobileAutomation.Mahfil_app.videoPlayer@11fc564b]" started-at="2024-10-15T13:27:35 BDT" name="config" finished-at="2024-10-15T13:27:41 BDT" duration-ms="6122" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- config -->
-        <test-method is-config="true" signature="before()[pri:0, instance:MobileAutomation.Mahfil_app.login@515c6049]" started-at="2024-10-09T13:49:10 BDT" name="before" finished-at="2024-10-09T13:49:17 BDT" duration-ms="7056" status="PASS">
+        <test-method is-config="true" signature="before()[pri:0, instance:MobileAutomation.Mahfil_app.videoPlayer@11fc564b]" started-at="2024-10-15T13:27:41 BDT" name="before" finished-at="2024-10-15T13:27:43 BDT" duration-ms="1528" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- before -->
-        <test-method signature="login12()[pri:12, instance:MobileAutomation.Mahfil_app.login@515c6049]" started-at="2024-10-09T13:49:17 BDT" name="login12" description="Login TestCase 12:Keep the phone number field empty and try to login" finished-at="2024-10-09T13:49:24 BDT" duration-ms="7434" status="PASS">
+        <test-method is-config="true" signature="General()[pri:0, instance:MobileAutomation.Mahfil_app.videoPlayer@11fc564b]" started-at="2024-10-15T13:27:43 BDT" name="General" finished-at="2024-10-15T13:28:08 BDT" duration-ms="25178" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Title didn't matched expected [Logout] but found [Sign In]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Title didn't matched expected [Logout] but found [Sign In]
+at org.testng.Assert.fail(Assert.java:110)
+at org.testng.Assert.failNotEquals(Assert.java:1577)
+at org.testng.Assert.assertEqualsImpl(Assert.java:149)
+at org.testng.Assert.assertEquals(Assert.java:131)
+at org.testng.Assert.assertEquals(Assert.java:655)
+at MobileAutomation.Mahfil_app.menuPageLocators.checkTitle(menuPageLocators.java:211)
+at MobileAutomation.Mahfil_app.videoPlayer.General(videoPlayer.java:44)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:361)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:296)
+at org.testng.internal.invokers.ConfigInvoker.invokeBeforeGroupsConfigurations(ConfigInvoker.java:150)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:585)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:829)
+at org.testng.TestRunner.run(TestRunner.java:602)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+at org.testng.TestNG.runSuites(TestNG.java:1099)
+at org.testng.TestNG.run(TestNG.java:1067)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- login12 -->
-        <test-method is-config="true" signature="home()[pri:0, instance:MobileAutomation.Mahfil_app.login@515c6049]" started-at="2024-10-09T13:49:24 BDT" name="home" finished-at="2024-10-09T13:49:28 BDT" duration-ms="3634" status="PASS">
+        </test-method> <!-- General -->
+        <test-method signature="downloadButtonCheckGeneral()[pri:11, instance:MobileAutomation.Mahfil_app.videoPlayer@11fc564b]" started-at="2024-10-15T13:28:08 BDT" name="downloadButtonCheckGeneral" description="Check download is not accessable by general user" finished-at="2024-10-15T13:28:08 BDT" duration-ms="0" status="SKIP">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Title didn't matched expected [Logout] but found [Sign In]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Title didn't matched expected [Logout] but found [Sign In]
+at org.testng.Assert.fail(Assert.java:110)
+at org.testng.Assert.failNotEquals(Assert.java:1577)
+at org.testng.Assert.assertEqualsImpl(Assert.java:149)
+at org.testng.Assert.assertEquals(Assert.java:131)
+at org.testng.Assert.assertEquals(Assert.java:655)
+at MobileAutomation.Mahfil_app.menuPageLocators.checkTitle(menuPageLocators.java:211)
+at MobileAutomation.Mahfil_app.videoPlayer.General(videoPlayer.java:44)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:361)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:296)
+at org.testng.internal.invokers.ConfigInvoker.invokeBeforeGroupsConfigurations(ConfigInvoker.java:150)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:585)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:829)
+at org.testng.TestRunner.run(TestRunner.java:602)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+at org.testng.TestNG.runSuites(TestNG.java:1099)
+at org.testng.TestNG.run(TestNG.java:1067)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- downloadButtonCheckGeneral -->
+        <test-method is-config="true" signature="home()[pri:0, instance:MobileAutomation.Mahfil_app.videoPlayer@11fc564b]" started-at="2024-10-15T13:28:08 BDT" name="home" finished-at="2024-10-15T13:28:11 BDT" duration-ms="3486" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- home -->
-        <test-method is-config="true" signature="closeConnection()[pri:0, instance:MobileAutomation.Mahfil_app.login@515c6049]" started-at="2024-10-09T13:49:28 BDT" name="closeConnection" finished-at="2024-10-09T13:49:28 BDT" duration-ms="181" status="PASS">
+        <test-method is-config="true" signature="closeConnection()[pri:0, instance:MobileAutomation.Mahfil_app.videoPlayer@11fc564b]" started-at="2024-10-15T13:28:11 BDT" name="closeConnection" finished-at="2024-10-15T13:28:12 BDT" duration-ms="188" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeConnection -->
-      </class> <!-- MobileAutomation.Mahfil_app.login -->
+      </class> <!-- MobileAutomation.Mahfil_app.videoPlayer -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

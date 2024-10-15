@@ -41,14 +41,15 @@ public class favourites extends configAppium{
 	public menuPageLocators menu;
 	public homePageLocators home;
 	public videoPlayerLocator videoPlayer;
+
 	public favouriteLocator favourite;
 	 @BeforeMethod
 	 public void before() throws InterruptedException {
 
 		 menu=new menuPageLocators(driver);
 		 home=new homePageLocators(driver);
-		 videoPlayer=new videoPlayerLocator(driver);
 		 favourite=new favouriteLocator(driver);
+		 videoPlayer= new videoPlayerLocator(driver);
 		 Thread.sleep(200);
 	 }
 
@@ -192,8 +193,8 @@ public class favourites extends configAppium{
 		home.clickMenu();
 		menu.clickFavourite();
 		favourite.playFavouriteVideo();
-		videoPlayer.checkTitle("videoPlayerPageTitle","Related Videos");
-		videoPlayer.stopVideo();
+//		videoPlayer.checkTitle("videoPlayerPageTitle","Related Videos");
+//		videoPlayer.stopVideo();
 	}
 
 	

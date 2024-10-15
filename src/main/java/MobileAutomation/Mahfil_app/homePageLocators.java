@@ -157,7 +157,7 @@ public class homePageLocators extends AndroidActions{
 	
 	public void playVideo() throws InterruptedException {
 		video.click();
-//		Thread.sleep(2000);
+		Thread.sleep(2000);
 	}
 	
 	public void findPremiumVideo() throws InterruptedException {

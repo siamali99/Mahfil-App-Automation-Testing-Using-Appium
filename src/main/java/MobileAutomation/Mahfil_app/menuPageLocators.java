@@ -142,6 +142,9 @@ public class menuPageLocators extends AndroidActions{
 		Thread.sleep(500);
 		shareButton.click();
 	}
+	public void back() throws InterruptedException {
+		driver.navigate().back();
+	}
 	
 	public void clickSignIn() throws InterruptedException {
 		String text=authButton.getAttribute("contentDescription");
@@ -159,7 +162,13 @@ public class menuPageLocators extends AndroidActions{
 	}
 	public void clickLogout() throws InterruptedException {
 		Thread.sleep(500);
-		logoutButton.click();
+		String text=authButton.getAttribute("contentDescription");
+		if(text.equals("Logout"))
+		{
+			logoutButton.click();
+			yesButton.click();
+			signInButton.click();
+		}
 	}
 	public void closePremiumPopUp() {
 		premiumClose.click();
@@ -202,4 +211,5 @@ public class menuPageLocators extends AndroidActions{
 		Assert.assertEquals(actualTitle,expectedTitle,"Title didn't matched");
 
 	}
+	
 }

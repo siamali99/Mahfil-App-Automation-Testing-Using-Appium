@@ -1,5 +1,7 @@
 package MobileAutomation.Mahfil_app;
 
+import java.util.Locale;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -8,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.github.javafaker.Faker;
 import com.google.common.collect.ImmutableMap;
 
 import io.appium.java_client.AppiumBy;
@@ -17,6 +20,7 @@ public class login extends configAppium{
 	public menuPageLocators menu;
 	public homePageLocators home;
 	public authenticationLocators authentication;
+
 	 @BeforeMethod
 	 public void before() throws InterruptedException {
 
@@ -48,6 +52,7 @@ public class login extends configAppium{
 	}
 	
 	
+	
 	//-----------Login with google----------//
 	@Test(priority=1, description="Login TestCase 01: Try to google login with provider logged in account")
 	public void login1() throws InterruptedException {
@@ -67,7 +72,7 @@ public class login extends configAppium{
 	}
 	
 	@Test(priority=3, description="Login TestCase 03:Google login with a valid account")
-	public void login3() throws InterruptedException {
+	public void googleLogin() throws InterruptedException {
 		menu.clickSignIn();
 		authentication.clickGoogleLogin();
 		authentication.clickGoogleAccount();
@@ -139,7 +144,7 @@ public class login extends configAppium{
 	
 	
 	@Test(priority=11, description="Login TestCase 11:Try to login by giving valid otp in email login")
-	public void signup10() throws InterruptedException {
+	public void emailLogin() throws InterruptedException {
 		menu.clickSignIn();
 		authentication.clickEmailLogin();
 		authentication.enterEmail("alhasibsiam@gmail.com");
