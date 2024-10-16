@@ -17,7 +17,7 @@ public class downloadLocators {
 	}
 	
 	//Download page title locators
-	@AndroidFindBy(xpath="(//android.view.View)[5]")
+	@AndroidFindBy(xpath="(//android.view.View)[6]")
 	private WebElement downloadPageTitle;
 	
 	//Empty Download page  locators
@@ -25,8 +25,12 @@ public class downloadLocators {
 	private WebElement emptyDownloadPageTitle;
 	
 	//downloaed video locators
-	@AndroidFindBy(xpath="(//android.view.View)[8]")
+	@AndroidFindBy(xpath="(//android.view.View)[9]")
 	private WebElement downloadedVideo;
+	
+	//offline downloaed video locators
+	@AndroidFindBy(xpath="(//android.view.View)[7]")
+	private WebElement offlineDownloadedVideo;
 	
 	//offline see downloaded video locators
 	@AndroidFindBy(accessibility="See Downloaded videos")
@@ -42,6 +46,10 @@ public class downloadLocators {
 	
 	public void playDownloadedVideo() {
 		downloadedVideo.click();
+	}
+	
+	public void playDownloadedVideoOffline() {
+		offlineDownloadedVideo.click();
 	}
 	
 	public void clickSeeDownloadedVideo() {

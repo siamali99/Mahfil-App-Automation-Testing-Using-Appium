@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Menu">
+	<listeners>
+		<listener class-name="MobileAutomation.TestUtils.Listeners"></listener>
+	</listeners>
+	<test thread-count="5" name="Test Menu Functionality">
+		<classes>
+			<class name="MobileAutomation.Mahfil_app.LiveDashboard" />
+			<class name="MobileAutomation.Mahfil_app.Downloads" />
+		</classes>
+	</test> <!--
+	Test Menu Functionality -->
+</suite> <!--
+Menu -->

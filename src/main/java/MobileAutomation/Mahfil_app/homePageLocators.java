@@ -97,6 +97,23 @@ public class homePageLocators extends AndroidActions{
 	@AndroidFindBy(xpath="(//android.widget.Button)")
 	private WebElement premiumPopUpTitle;
 	
+	//return home
+	public void returnHome() {
+		while(true)
+		{
+			String home_bounds=driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).getAttribute("bounds");
+			if(home_bounds.equals("[476,181][964,305]"))
+					{
+				break;
+					}
+			else
+			{
+				driver.navigate().back();
+			}
+	
+		}
+	}
+	
 	//CLicks
 	public void clickMenu() {
 		menuButton.click();

@@ -61,7 +61,8 @@ public class salatReminderLocators {
 	public void clickReminder() {
 		reminderButton.click();
 	}
-	public void clickFajr() {
+	public void clickFajr() throws InterruptedException {
+		Thread.sleep(1000);
 		reminderButtonFajr.click();
 	}
 	public void clickOnTimeReminder() {

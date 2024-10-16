@@ -12,64 +12,56 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
 
-public class salatReminder extends configAppium{
+public class salatReminder extends configAppium {
 	public menuPageLocators menu;
 	public homePageLocators home;
 	public videoPlayerLocator videoPlayer;
 	public salatReminderLocators salatReminder;
-	 @BeforeMethod
-	 public void before() throws InterruptedException {
 
-		 menu=new menuPageLocators(driver);
-		 home=new homePageLocators(driver);
-		 salatReminder=new salatReminderLocators(driver);
-		 Thread.sleep(200);
-	 }
-	
+	@BeforeMethod
+	public void before() throws InterruptedException {
+
+		menu = new menuPageLocators(driver);
+		home = new homePageLocators(driver);
+		salatReminder = new salatReminderLocators(driver);
+		Thread.sleep(200);
+	}
+
 	@AfterMethod
 	public void home() {
-		while(true)
-		{
-			String home_bounds=driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).getAttribute("bounds");
-			if(home_bounds.equals("[476,181][964,305]"))
-					{
-				break;
-					}
-			else
-			{
-				driver.navigate().back();
-			}
-	
-		}
+		home.returnHome();
 	}
-	
-	@Test(priority=1, description="Salat Reminder Testcase 01: Check Salat Reminder button is working",groups= {"general","premium"})
+
+	@Test(priority = 1, description = "Salat Reminder Testcase 01: Check Salat Reminder button is working", groups = {
+			"general", "premium" })
 	public void salatReminderButtonCheck() throws InterruptedException {
 		home.clickMenu();
 		menu.clickSalatReminder();
 		salatReminder.checkTitle("salatReminderPageTitle", "Salat Time");
 	}
-	
-	@Test(priority=2, description="Salat Reminder Testcase 02: Check back button is working from Salat Reminder page",groups= {"general","premium"})
+
+	@Test(priority = 2, description = "Salat Reminder Testcase 02: Check back button is working from Salat Reminder page", groups = {
+			"general", "premium" })
 	public void backButtonCheck() throws InterruptedException {
 		home.clickMenu();
 		menu.clickSalatReminder();
 		salatReminder.clickBackButton();
-		menu.checkTitle("menuTitle","Others");
-		
+		menu.checkTitle("menuTitle", "Others");
+
 	}
-	
-	@Test(priority=3, description="Salat Reminder Testcase 03: Check reminder switch button turns off in Salat Reminder page",groups= {"general","premium"})
+
+	@Test(priority = 3, description = "Salat Reminder Testcase 03: Check reminder switch button turns off in Salat Reminder page", groups = {
+			"general", "premium" })
 	public void reminderSwitchbuttonCheck() throws InterruptedException {
 		home.clickMenu();
 		menu.clickSalatReminder();
 		salatReminder.clickReminder();
 		salatReminder.checkTitle("reminderButton", "false");
-		
+
 	}
-	
-	
-	@Test(priority=4, description="Salat Reminder Testcase 04: Check turning off reminder switch button turns off all other salat switches in Salat Reminder page",groups= {"general","premium"})
+
+	@Test(priority = 4, description = "Salat Reminder Testcase 04: Check turning off reminder switch button turns off all other salat switches in Salat Reminder page", groups = {
+			"general", "premium" })
 	public void reminderSwitchbuttoncheck2() throws InterruptedException {
 		home.clickMenu();
 		menu.clickSalatReminder();
@@ -78,10 +70,11 @@ public class salatReminder extends configAppium{
 		salatReminder.checkTitle("reminderButtonAsr", "false");
 		salatReminder.checkTitle("reminderButtonMaghrib", "false");
 		salatReminder.checkTitle("reminderButtonIsha", "false");
-		
+
 	}
-	
-	@Test(priority=5, description="Salat Reminder Testcase 05: Check turning on reminder switch button  turns on all other salat switches in Salat Reminder page",groups= {"general","premium"})
+
+	@Test(priority = 5, description = "Salat Reminder Testcase 05: Check turning on reminder switch button  turns on all other salat switches in Salat Reminder page", groups = {
+			"general", "premium" })
 	public void reminderSwitchbuttoncheck3() throws InterruptedException {
 		home.clickMenu();
 		menu.clickSalatReminder();
@@ -93,9 +86,9 @@ public class salatReminder extends configAppium{
 		salatReminder.checkTitle("reminderButtonMaghrib", "true");
 		salatReminder.checkTitle("reminderButtonIsha", "true");
 	}
-	
-	
-	@Test(priority=6, description="Salat Reminder Testcase 06: Check turning on reminder shows set reminder pop up and on time reminder button is working",groups= {"general","premium"})
+
+	@Test(priority = 6, description = "Salat Reminder Testcase 06: Check turning on reminder shows set reminder pop up and on time reminder button is working", groups = {
+			"general", "premium" })
 	public void reminderSwitchbuttoncheck4() throws InterruptedException {
 		home.clickMenu();
 		menu.clickSalatReminder();
@@ -108,28 +101,5 @@ public class salatReminder extends configAppium{
 		salatReminder.clickOnTimeReminder();
 	}
 
-	
-	@Test(priority=7, description="Salat Reminder Testcase 07: Check set reminder time buttons are working",groups= {"general","premium"})
-	public void reminderSwitchbuttoncheck5() throws InterruptedException {
-		home.clickMenu();
-		menu.clickSalatReminder();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-		driver.findElement(By.xpath("(//android.widget.ImageView)[9]")).click();
-//		driver.findElement(By.xpath("(//android.widget.Switch)[2]")).click();
-//		driver.findElement(By.xpath("(//android.widget.Switch)[2]")).click();
-//		driver.findElement(AppiumBy.accessibilityId("5 min")).click();
-//		driver.findElement(AppiumBy.accessibilityId("10 min")).click();
-//		driver.findElement(AppiumBy.accessibilityId("30 min")).click();
-//		driver.findElement(AppiumBy.accessibilityId("60 min")).click();
-//		driver.findElement(AppiumBy.accessibilityId("Done")).click();
-//		System.out.println("buttons are working");
 
-		WebDriver driver = null; // Assigned elsewhere
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("By.xpath('(//android.widget.Switch)[2]').setAttribute('checked', 'false')");
-		String actualTitle=driver.findElement(By.xpath("(//android.widget.Switch)[2]")).getAttribute("contentDescription");
-		System.out.println(actualTitle);
-	}
-	
-	
 }

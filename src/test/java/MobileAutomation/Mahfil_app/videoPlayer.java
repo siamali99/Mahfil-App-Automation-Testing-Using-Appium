@@ -12,7 +12,6 @@ public class videoPlayer extends configAppium {
 	public homePageLocators home;
 	public authenticationLocators authentication;
 	public videoPlayerLocator videoPlayer;
-	public beforeGroupActions before;
 
 	@BeforeClass
 	public void before() throws InterruptedException {
@@ -42,18 +41,21 @@ public class videoPlayer extends configAppium {
 		authentication.enterOTP("0", "1", "1", "0");
 		authentication.clickContinue();
 		menu.checkTitle("authButton", "Logout");
+		menu.back();
 	}
 
 	@BeforeGroups(value = "premium")
 	public void Premium() throws InterruptedException {
 		home.clickMenu();
 		menu.Scroll(2);
+		menu.clickSignIn();
 		authentication.clickEmailLogin();
 		authentication.enterEmail("premium.mahfil@gmail.com");
 		authentication.clickContinue();
 		authentication.enterOTP("0", "1", "1", "0");
 		authentication.clickContinue();
 		menu.checkTitle("authButton", "Logout");
+		menu.back();
 	}
 
 	@AfterMethod

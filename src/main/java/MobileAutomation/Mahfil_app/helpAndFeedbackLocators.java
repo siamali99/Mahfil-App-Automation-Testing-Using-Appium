@@ -60,6 +60,9 @@ public class helpAndFeedbackLocators {
 	//Toast message locator
 	@AndroidFindBy(accessibility="Fields are incorrect")
 	private WebElement toastMessage;
+	//Success message locator
+	@AndroidFindBy(accessibility="Report sending successful")
+	private WebElement successMessage;
 	
 	public void Scroll(int times) {
 		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",times));
@@ -109,6 +112,10 @@ public class helpAndFeedbackLocators {
 		else if(page.equals("toastMessage"))
 		{
 			actualTitle=toastMessage.getAttribute("contentDescription");
+		}
+		else if(page.equals("successMessage"))
+		{
+			actualTitle=successMessage.getAttribute("contentDescription");
 		}
 
 		System.out.println(actualTitle);

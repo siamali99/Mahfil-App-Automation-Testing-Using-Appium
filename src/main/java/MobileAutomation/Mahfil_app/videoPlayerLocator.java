@@ -121,7 +121,7 @@ public class videoPlayerLocator {
 //	@AndroidFindBy(accessibility="DOWNLOAD")
 //	private WebElement downloadButton;
 	
-	@AndroidFindBy(xpath="(//android.widget.Button)[2]")
+	@AndroidFindBy(xpath="//android.widget.Button[2]")
 	private WebElement cutVideo;
 	
 	//Video player identifer Related Videos

@@ -193,6 +193,10 @@ public class menuPageLocators extends AndroidActions{
 		{
 			actualTitle=downloadButton.getAttribute("contentDescription");
 		}
+		else if(page.equals("watchHisotryButton"))
+		{
+			actualTitle=watchHisotryButton.getAttribute("contentDescription");
+		}
 		else if(page.equals("subscribedChannelButton"))
 		{
 			actualTitle=subscribedChannelButton.getAttribute("contentDescription");
