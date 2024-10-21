@@ -4,18 +4,35 @@
   <listeners>
     <listener class-name="MobileAutomation.TestUtils.Listeners"/>
   </listeners>
-  <test thread-count="5" name="Test Menu Functionality(failed)">
+  <test thread-count="5" name="Test Live Dashboard Functionality(failed)">
     <classes>
       <class name="MobileAutomation.Mahfil_app.LiveDashboard">
         <methods>
           <include name="home"/>
           <include name="reportCheck"/>
+          <include name="unsubscribeButtonCheck"/>
           <include name="beforeClass"/>
+          <include name="backButtonCheck"/>
           <include name="config"/>
           <include name="beforeMethod"/>
           <include name="closeConnection"/>
         </methods>
       </class> <!-- MobileAutomation.Mahfil_app.LiveDashboard -->
     </classes>
-  </test> <!-- Test Menu Functionality(failed) -->
+  </test> <!-- Test Live Dashboard Functionality(failed) -->
+  <test thread-count="5" name="Test Downloads Functionality(failed)">
+    <classes>
+      <class name="MobileAutomation.Mahfil_app.Downloads">
+        <methods>
+          <include name="offlinedownloadvideoplaycheck"/>
+          <include name="home"/>
+          <include name="removeButtonCheck"/>
+          <include name="before"/>
+          <include name="downloadCheck"/>
+          <include name="config"/>
+          <include name="closeConnection"/>
+        </methods>
+      </class> <!-- MobileAutomation.Mahfil_app.Downloads -->
+    </classes>
+  </test> <!-- Test Downloads Functionality(failed) -->
 </suite> <!-- Failed suite [Menu] -->

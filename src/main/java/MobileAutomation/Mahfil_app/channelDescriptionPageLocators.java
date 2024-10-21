@@ -29,7 +29,7 @@ public class channelDescriptionPageLocators extends AndroidActions{
 	private WebElement premiumPopularChannelButton;
 	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.view.View)[3]")
 	private WebElement popularChannelName;
-	@AndroidFindBy(xpath="(//android.view.View)[6]")
+	@AndroidFindBy(xpath="(//android.view.View)[7]")
 	private WebElement channelPageTitle;
 	
 	//Notification Page locators

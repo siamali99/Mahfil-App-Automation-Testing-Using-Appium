@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,108 +18,40 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.TouchAction;
 
 public class Home extends configAppium{
+	public channelDescriptionPageLocators channel;
+	public menuPageLocators menu;
 	public homePageLocators home;
-	 @BeforeGroups(value = "premium")
-	    public void premiumLogin() {
-			driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-			//Scroll to sign in button
-			boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
-			//click on sign in button
-			String text=driver.findElement(By.xpath("//android.widget.ScrollView/android.widget.ImageView[9]")).getAttribute("contentDescription");
-			System.out.println(text);
-			if(text.equals("Logout"))
-			{
-				driver.findElement(AppiumBy.accessibilityId("Logout")).click();
-				driver.findElement(AppiumBy.accessibilityId("Yes")).click();
-				driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
-			}
-			else
-			{
-				driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
-			}
-			
-			driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
-			WebElement email=driver.findElement(By.className("android.widget.EditText"));
-			email.click();
-			email.sendKeys("premium.mahfil@gmail.com");
-			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
-			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
-			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
-			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
-			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-			driver.navigate().back();
-	 }
-	 
-	 @BeforeGroups(value = "general")
-	 public void generalLogin() {
-			driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).click();
-			//Scroll to sign in button
-			boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",2.0));
-			//click on sign in button
-			String text=driver.findElement(By.xpath("//android.widget.ScrollView/android.widget.ImageView[9]")).getAttribute("contentDescription");
-			System.out.println(text);
-			if(text.equals("Logout"))
-			{
-				driver.findElement(AppiumBy.accessibilityId("Logout")).click();
-				driver.findElement(AppiumBy.accessibilityId("Yes")).click();
-				driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
-			}
-			else
-			{
-				driver.findElement(AppiumBy.accessibilityId("Sign In")).click();
-			}
-			
-			driver.findElement(AppiumBy.accessibilityId("Continue with Email")).click();
-			WebElement email=driver.findElement(By.className("android.widget.EditText"));
-			email.click();
-			email.sendKeys("general.mahfil@gmail.com");
-			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[3]/android.widget.EditText")).sendKeys("0");
-			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[4]/android.widget.EditText")).sendKeys("1");
-			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.EditText")).sendKeys("1");
-			driver.findElement(By.xpath("//android.widget.ScrollView/android.view.View[6]/android.widget.EditText")).sendKeys("0");
-			driver.findElement(AppiumBy.accessibilityId("Continue")).click();
-			driver.navigate().back();
-	 }
-	 
-//		public homePageLocators home;
-	 @BeforeMethod
-	 public void before() {
-		 home=new homePageLocators(driver);
-	 }
+	public videoPlayerLocator videoPlayer;
+	public authenticationLocators authentication;
+
+	@BeforeClass
+	public void before() throws InterruptedException {
+		menu = new menuPageLocators(driver);
+		home = new homePageLocators(driver);
+		videoPlayer = new videoPlayerLocator(driver);
+		authentication = new authenticationLocators(driver);
+		 channel=new channelDescriptionPageLocators(driver);
+		Thread.sleep(200);
+	}
+
 	
 	@AfterMethod
 	public void home() {
-		while(true)
-		{
-			String home_bounds=driver.findElement(By.xpath("(//android.widget.ImageView)[2]")).getAttribute("bounds");
-			if(home_bounds.equals("[476,181][964,305]"))
-					{
-				break;
-					}
-			else
-			{
-				driver.navigate().back();
-			}
-	
-		}
+		home.returnHome();
 	}
 	
 
 	
 	@Test(priority=1, description="Home Testcase 01: Check menu section is opening",groups= {"all"})
 	public void menuButtonCheck() {
-//		homePageLocators home=new homePageLocators(driver);
 		home.clickMenu();
-		home.checkTitle("menuPageTitle","Others");
+		menu.checkTitle("menuTitle", "Others");
 	}
 	
 	@Test(priority=2, description="Home Testcase 02: Check notification is not accessable",groups= {"guest"})
 	public void guestnotificationButtonCheck() {
 		home.clickNotification();
-		//passing exoected page and page title
-		home.checkTitle("SignupPageTitle","Continue with Google");
+		authentication.checkTitle("SignupPageTitle","Continue with Google");
 	}
 	
 	
@@ -132,19 +65,18 @@ public class Home extends configAppium{
 	public void channelLogoCheck() throws InterruptedException {
 		String title=home.checkClickedPopularChannelName();
 		home.clickPopularChannel();
-		home.checkTitle("channelPageTitle",title);
+		channel.checkTitle("channelPageTitle",title);
 	}
 	
 	@Test(priority=5, description="Home Testcase 05: Check subscribe button click taking guest user to login page",groups= {"guest"})
 	public void guestSubscribeButtonCheck() throws InterruptedException {
 		home.clickSubscribe();
-		home.checkTitle("SignupPageTitle","Continue with Google");
+		authentication.checkTitle("SignupPageTitle","Continue with Google");
 	}
 	
 	
 	@Test(priority=6, description="Home Testcase 06: Check general video is shareable as a guest user",groups= {"guest"})
 	public void guestGeneralVideoShareCheck() throws InterruptedException {
-//		home.Scroll(8);
 		home.findGeneralVideo();
 		home.clickElipsis();
 		home.clickShare();
@@ -153,7 +85,6 @@ public class Home extends configAppium{
 	
 	@Test(priority=7, description="Home Testcase 07: Check premium video is shareable as a guest user",groups= {"guest"})
 	public void guestPremiumVideoShareCheck() throws InterruptedException {
-//		home.Scroll(8);
 		home.findPremiumVideo();
 		home.clickElipsis();
 		home.clickShare();
@@ -162,20 +93,18 @@ public class Home extends configAppium{
 	
 	@Test(priority=8, description="Home Testcase 08: Check general video ad video favourite is not working as a guest user",groups= {"guest"})
 	public void guestGeneralVideoAdFavCheck() throws InterruptedException {
-//		home.Scroll(8);
 		home.findGeneralVideo();
 		home.clickElipsis();
 		home.clickFavourite();
-		home.checkTitle("SignupPageTitle","Continue with Google");
+		authentication.checkTitle("SignupPageTitle","Continue with Google");
 		}
 	
 	@Test(priority=9, description="Home Testcase 09: Check premium video ad video favourite is not working as a guest user",groups= {"guest"})
 	public void guestPremiumVideoAdFavCheck() throws InterruptedException {
-//		home.Scroll(8);
 		home.findPremiumVideo();
 		home.clickElipsis();
 		home.clickFavourite();
-		home.checkTitle("SignupPageTitle","Continue with Google");
+		authentication.checkTitle("SignupPageTitle","Continue with Google");
 		}
 	
 	@Test(priority=10, description="Home Testcase 10: Check video report is not working as a guest user",groups= {"guest"})
@@ -184,7 +113,7 @@ public class Home extends configAppium{
 		home.findGeneralVideo();
 		home.clickElipsis();
 		home.clickReportbutton();
-		home.checkTitle("SignupPageTitle","Continue with Google");
+		authentication.checkTitle("SignupPageTitle","Continue with Google");
 		}
 	
 	
@@ -194,14 +123,14 @@ public class Home extends configAppium{
 		home.findPremiumVideo();
 		home.clickElipsis();
 		home.clickReportbutton();
-		home.checkTitle("SignupPageTitle","Continue with Google");
+		authentication.checkTitle("SignupPageTitle","Continue with Google");
 		}
 	
 	@Test(priority=12, description="Home Testcase 12: Check premium video is not playable as a guest user",groups= {"guest"})
 	public void guestPremiumVideoPlay() throws InterruptedException {
 		home.findPremiumVideo();
 		home.playVideo();
-		home.checkTitle("SignupPageTitle","Continue with Google");
+		authentication.checkTitle("SignupPageTitle","Continue with Google");
 	
 	}
 	
@@ -209,8 +138,8 @@ public class Home extends configAppium{
 	public void guestGeneralVideoPlay() throws InterruptedException {
 		home.findGeneralVideo();
 		home.playVideo();
-		home.checkTitle("videoPlayerPageTitle","Related Videos");
-	
+		videoPlayer.checkTitle("videoPlayerPageTitle", "Related Videos");
+		videoPlayer.stopVideo();
 	}
 	
 	@Test(priority=14, description="Home Testcase 14: Check notification is accessable",groups= {"general"})
@@ -233,9 +162,8 @@ public class Home extends configAppium{
 	}
 	
 	
-	@Test(priority=17, description="Home Testcase 17: Check general video ad to favourite is working",groups= {"general"})
+	@Test(priority=17, description="Home Testcase 17: Check general video add to favourite is working",groups= {"general"})
 	public void generalVideoAdFavButtonCheck() throws InterruptedException {
-//		home.Scroll(7);
 		home.findGeneralVideo();
 		home.clickElipsis();
 		home.clickFavourite();
@@ -245,11 +173,9 @@ public class Home extends configAppium{
 	
 	@Test(priority=18, description="Home Testcase 18: Check general video remove from  favourite is working",groups= {"general"})
 	public void generalVideoremoveFavButtonCheck() throws InterruptedException {
-//		home.Scroll(7);
 		home.findGeneralVideo();
 		home.clickElipsis();
 		home.clickFavourite();
-//		Thread.sleep(1000);
 		home.clickElipsis();
 		home.checkTitle("addFavouriteButton","Add to Favourite");
 		}
@@ -257,7 +183,7 @@ public class Home extends configAppium{
 	
 	@Test(priority=19, description="Home Testcase 19: Check general user can not ad premium video to favourite",groups= {"general"})
 	public void premumVideoAdFavButtonCheck() throws InterruptedException {
-//		home.Scroll(7);
+
 		home.findPremiumVideo();
 		home.clickElipsis();
 		home.clickFavourite();

@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test Menu Functionality</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>11/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>12/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Oct 16 10:56:43 BDT 2024</td>
+<td>Started on:</td><td>Thu Oct 17 08:30:01 BDT 2024</td>
 </tr>
-<tr><td>Total time:</td><td>129 seconds (129559 ms)</td>
+<tr><td>Total time:</td><td>150 seconds (150667 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,52 +76,20 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='MobileAutomation.Mahfil_app.LiveDashboard.reportCheck()'><b>reportCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 13: Check report video is working in live dashboard</td>
-<td><div><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
-System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21&apos;
-Driver info: io.appium.java_client.android.AndroidDriver
-Command: [6ebb211d-126e-4718-bbcf-bbfd4b377590, findElement {using=accessibility id, value=Spam or misleading}]
-Capabilities {appium:app: C:\Users\alhas\eclipse-work..., appium:appPackage: com.mahfil.app, appium:automationName: UIAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\alhas\eclipse-work..., automationName: UIAutomator2, deviceName: device1, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 34, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 560, appium:deviceScreenSize: 1440x3120, appium:deviceUDID: emulator-5554, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:noReset: true, appium:pixelRatio: 3.5, appium:platformVersion: 14, appium:statBarHeight: 84, appium:takesScreenshot: true, appium:viewportRect: {height: 3036, left: 0, top: 84, width: 1440}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 6ebb211d-126e-4718-bbcf-bbfd4b377590
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
-	at MobileAutomation.Mahfil_app.LiveDashboardLocators.report(LiveDashboardLocators.java:149)
-	at MobileAutomation.Mahfil_app.LiveDashboard.reportCheck(LiveDashboard.java:164)
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.searchButtonCheck()'><b>searchButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 03: Check search button is working in live dashboard page</td>
+<td><div><pre>java.lang.AssertionError: Title didn&apos;t matched expected [Popular Search] but found [Popular Channels]
+	at MobileAutomation.Mahfil_app.LiveDashboardLocators.checkTitle(LiveDashboardLocators.java:203)
+	at MobileAutomation.Mahfil_app.LiveDashboard.searchButtonCheck(LiveDashboard.java:94)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1076721351", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1076721351'><pre>org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
-System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21&apos;
-Driver info: io.appium.java_client.android.AndroidDriver
-Command: [6ebb211d-126e-4718-bbcf-bbfd4b377590, findElement {using=accessibility id, value=Spam or misleading}]
-Capabilities {appium:app: C:\Users\alhas\eclipse-work..., appium:appPackage: com.mahfil.app, appium:automationName: UIAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\alhas\eclipse-work..., automationName: UIAutomator2, deviceName: device1, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 34, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 560, appium:deviceScreenSize: 1440x3120, appium:deviceUDID: emulator-5554, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:noReset: true, appium:pixelRatio: 3.5, appium:platformVersion: 14, appium:statBarHeight: 84, appium:takesScreenshot: true, appium:viewportRect: {height: 3036, left: 0, top: 84, width: 1440}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 6ebb211d-126e-4718-bbcf-bbfd4b377590
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
-	at MobileAutomation.Mahfil_app.LiveDashboardLocators.report(LiveDashboardLocators.java:149)
-	at MobileAutomation.Mahfil_app.LiveDashboard.reportCheck(LiveDashboard.java:164)
+... Removed 30 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1380177712", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1380177712'><pre>java.lang.AssertionError: Title didn&apos;t matched expected [Popular Search] but found [Popular Channels]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failNotEquals(Assert.java:1577)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:149)
+	at org.testng.Assert.assertEquals(Assert.java:131)
+	at org.testng.Assert.assertEquals(Assert.java:655)
+	at MobileAutomation.Mahfil_app.LiveDashboardLocators.checkTitle(LiveDashboardLocators.java:203)
+	at MobileAutomation.Mahfil_app.LiveDashboard.searchButtonCheck(LiveDashboard.java:94)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -149,8 +117,8 @@ Session ID: 6ebb211d-126e-4718-bbcf-bbfd4b377590
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>13</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
+<td>1</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -161,60 +129,65 @@ Session ID: 6ebb211d-126e-4718-bbcf-bbfd4b377590
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='MobileAutomation.Mahfil_app.LiveDashboard.dashboardButtonCheck()'><b>dashboardButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 01: Check live dashboard button is working</td>
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.reportCheck()'><b>reportCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 13: Check report video is working in live dashboard</td>
 <td></td>
-<td>0</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
+<td>5</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
 <tr>
 <td title='MobileAutomation.Mahfil_app.LiveDashboard.notificationButtonCheck()'><b>notificationButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 02: Check notification button is working in live dashboard page</td>
 <td></td>
-<td>2</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
+<td>1</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
 <tr>
 <td title='MobileAutomation.Mahfil_app.LiveDashboard.LiveVideoCheck()'><b>LiveVideoCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 07: Check video is playing from live dashboard on click</td>
 <td></td>
 <td>24</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
 <tr>
 <td title='MobileAutomation.Mahfil_app.LiveDashboard.channelLogoCheck()'><b>channelLogoCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 06: Check channel is opening from live dashboard on logo click</td>
 <td></td>
 <td>2</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.LiveDashboard.liveshareCheck()'><b>liveshareCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 10: Check live video share is working in live dashboard</td>
-<td></td>
-<td>5</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.LiveDashboard.backButtonCheck()'><b>backButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 04: Check back button is working from live dashboard page</td>
-<td></td>
-<td>1</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.LiveDashboard.adFavCheck()'><b>adFavCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 11: Check live video add to favourite is working in live dashboard</td>
-<td></td>
-<td>4</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.LiveDashboard.searchButtonCheck()'><b>searchButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 03: Check search button is working in live dashboard page</td>
-<td></td>
-<td>1</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.LiveDashboard.subscribeButtonCheck()'><b>subscribeButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 08: Check subscribe button is working in live dashboard</td>
-<td></td>
-<td>1</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.LiveDashboard.unsubscribeButtonCheck()'><b>unsubscribeButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 09: Check unsubscribe button is working in live dashboard</td>
-<td></td>
-<td>2</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
 <tr>
 <td title='MobileAutomation.Mahfil_app.LiveDashboard.removeFavCheck()'><b>removeFavCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 12: Check live video remove from favourite is working in live dashboard</td>
 <td></td>
 <td>4</td>
-<td>MobileAutomation.Mahfil_app.LiveDashboard@4a00d9cf</td></tr>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
+<tr>
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.backButtonCheck()'><b>backButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 04: Check back button is working from live dashboard page</td>
+<td></td>
+<td>1</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
+<tr>
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.adFavCheck()'><b>adFavCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 11: Check live video add to favourite is working in live dashboard</td>
+<td></td>
+<td>4</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
+<tr>
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.subscribeButtonCheck()'><b>subscribeButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 08: Check subscribe button is working in live dashboard</td>
+<td></td>
+<td>1</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
+<tr>
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.unsubscribeButtonCheck()'><b>unsubscribeButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 09: Check unsubscribe button is working in live dashboard</td>
+<td></td>
+<td>2</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
+<tr>
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.liveshareCheck()'><b>liveshareCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 10: Check live video share is working in live dashboard</td>
+<td></td>
+<td>5</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
+<tr>
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.dashboardButtonCheck()'><b>dashboardButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 01: Check live dashboard button is working</td>
+<td></td>
+<td>0</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
+<tr>
+<td title='MobileAutomation.Mahfil_app.LiveDashboard.dashboardButtonCheckGuest()'><b>dashboardButtonCheckGuest</b><br>Test class: MobileAutomation.Mahfil_app.LiveDashboard<br>Test method: Livedashboard Testcase 01: Check login page is shown to guest user while click</td>
+<td></td>
+<td>0</td>
+<td>MobileAutomation.Mahfil_app.LiveDashboard@6736fa8d</td></tr>
 </table><p>
 </body>
 </html>

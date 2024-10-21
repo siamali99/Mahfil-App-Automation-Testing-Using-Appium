@@ -14,7 +14,8 @@ public class Listeners implements ITestListener {
 	
 	@Override
 	public void onTestStart(ITestResult result) {
-		String text=result.getMethod().getMethodName()+" & "+ result.getMethod().getDescription();
+		//Combining Method and test description
+		String text=result.getMethod().getMethodName()+" : "+ result.getMethod().getDescription();
 		test=extent.createTest(text);
 		
 	}

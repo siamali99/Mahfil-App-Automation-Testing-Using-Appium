@@ -167,7 +167,6 @@ public class menuPageLocators extends AndroidActions{
 		{
 			logoutButton.click();
 			yesButton.click();
-			signInButton.click();
 		}
 	}
 	public void closePremiumPopUp() {

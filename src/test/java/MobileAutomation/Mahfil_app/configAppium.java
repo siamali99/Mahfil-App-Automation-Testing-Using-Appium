@@ -35,8 +35,8 @@ public class configAppium {
 		UiAutomator2Options options= new UiAutomator2Options();
 		options.setDeviceName("device1");
 		//Azure live server
-		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_azure_testserver.apk");
-
+//		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_azure_testserver.apk");
+		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\Mahfil_liveserverV2.7.3.apk");
 		//Azure apk  test server
 //		options.setApp("C:\\Users\\alhas\\eclipse-workspace\\Mahfil_app\\src\\test\\java\\resources\\azure server app.apk");
 		options.setCapability("noReset", true);

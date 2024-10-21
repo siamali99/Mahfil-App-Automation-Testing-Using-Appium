@@ -33,7 +33,7 @@ public class homePageLocators extends AndroidActions{
 	//Notification Page locators
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[3]")
 	private WebElement notificationButton;
-	@AndroidFindBy(xpath="(//android.view.View)[5]")
+	@AndroidFindBy(xpath="(//android.view.View)[6]")
 	private WebElement notificationPageTitle;
 	
 	
@@ -43,17 +43,16 @@ public class homePageLocators extends AndroidActions{
 	//Search Page locators
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[4]")
 	private WebElement searchButton;
-	@AndroidFindBy(xpath="(//android.view.View)[7]")
+	@AndroidFindBy(xpath="(//android.view.View)[8]")
 	private WebElement searchPageTitle;
 	
 	
 	//Popular channel locators
-	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.view.View)[1]")
-	private WebElement popularChannelButton;
 	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.view.View)[2]")
+	private WebElement popularChannelButton;
+	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.view.View)[3]")
 	private WebElement popularChannelName;
-	@AndroidFindBy(xpath="(//android.view.View)[6]")
-	private WebElement channelPageTitle;
+
 	
 	//subscribe button locators
 	@AndroidFindBy(xpath="(//android.widget.HorizontalScrollView/android.widget.ImageView)[1]")
@@ -223,10 +222,6 @@ public class homePageLocators extends AndroidActions{
 		else if(page.equals("searchPageTitle"))
 		{
 			actualTitle=searchPageTitle.getAttribute("contentDescription");
-		}
-		else if(page.equals("channelPageTitle"))
-		{
-			actualTitle=channelPageTitle.getAttribute("contentDescription");
 		}
 		else if(page.equals("sharePageTitle"))
 		{
