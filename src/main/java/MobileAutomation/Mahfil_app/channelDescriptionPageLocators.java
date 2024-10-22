@@ -1,9 +1,14 @@
 package MobileAutomation.Mahfil_app;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.google.common.collect.ImmutableMap;
@@ -14,12 +19,13 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 public class channelDescriptionPageLocators extends AndroidActions{
-	
+	WebDriverWait wait;
 	AndroidDriver driver;
 	public channelDescriptionPageLocators(AndroidDriver driver) {
 		super(driver);
 		this.driver=driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
 	//Popular channel locators
@@ -35,7 +41,7 @@ public class channelDescriptionPageLocators extends AndroidActions{
 	//Notification Page locators
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[2]")
 	private WebElement notificationButton;
-	@AndroidFindBy(xpath="(//android.view.View)[5]")
+	@AndroidFindBy(xpath="(//android.view.View)[6]")
 	private WebElement notificationPageTitle;
 	
 	
@@ -45,8 +51,18 @@ public class channelDescriptionPageLocators extends AndroidActions{
 	//Search Page locators
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[3]")
 	private WebElement searchButton;
-	@AndroidFindBy(xpath="(//android.view.View)[7]")
+	@AndroidFindBy(xpath="(//android.view.View)[8]")
 	private WebElement searchPageTitle;
+	@AndroidFindBy(className="android.widget.EditText")
+	private WebElement searchField;
+	@AndroidFindBy(xpath="(//android.widget.ImageView)[2]")
+	private WebElement searchIcon;
+	
+	//channel tab click
+	@AndroidFindBy(xpath="(//android.view.View)[8]")
+	private WebElement channelTab;
+	@AndroidFindBy(xpath="//*[contains(@content-desc, 'Add Comment')]")
+	private WebElement commentButton;
 	
 
 	//subscribe button locators
@@ -96,19 +112,48 @@ public class channelDescriptionPageLocators extends AndroidActions{
 	private WebElement premiumPopUpTitle;
 	
 	//playlist locators
-	@AndroidFindBy(xpath="(//android.view.View)[12]")
+	@AndroidFindBy(xpath="(//android.view.View)[13]")
 	private WebElement playlistTab;
 	@AndroidFindBy(xpath="(//android.widget.ImageView)[5]")
 	private WebElement playlist;
 	@AndroidFindBy(accessibility = "Playlist Videos")
 	private WebElement playlistPlayerPageTitle;
-
+	//Videos locators
+	@AndroidFindBy(xpath="(//android.view.View)[12]")
+	private WebElement videosTab;
 	public void clickNotification() {
 		notificationButton.click();
 	}
 	
 	public void clickSearch() {
 		searchButton.click();
+	}
+	
+	public void findChannel(String channel) throws InterruptedException {
+		searchField.click();
+		searchField.sendKeys(channel);
+		searchIcon.click();
+		Thread.sleep(2000);
+	}
+	public void enterChannel(String channel) {
+		wait.until(ExpectedConditions.visibilityOf(channelTab));
+		channelTab.click();
+		driver.findElement(By.xpath("//*[contains(@content-desc, 'Mahfil Original')]")).click();
+	}
+	
+	public void returnChannel() {
+		while(true) {
+			String channelTitle=channelPageTitle.getAttribute("contentDescription");
+			if(channelTitle.equals("Mahfil Original"))
+			{
+				break;
+			}
+			else
+			{
+				driver.navigate().back();
+			}
+		}
+
 	}
 	
 	public String checkClickedPopularChannelName() {
@@ -137,6 +182,9 @@ public class channelDescriptionPageLocators extends AndroidActions{
 	
 	public void Scroll(int times) {
 		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","down","percent",times));
+	}
+	public void ScrollUp(int times) {
+		boolean scroll=(Boolean)((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of("left",100, "top",100,"width",100,"height",1000,"direction","up","percent",times));
 	}
 	
 	public void clickElipsis() {
@@ -206,11 +254,18 @@ public class channelDescriptionPageLocators extends AndroidActions{
 		playlistTab.click();
 	}
 	
+	public void clickVideosTab() throws InterruptedException {
+		Thread.sleep(2000);
+		videosTab.click();
+	}
+	
 	public void clickPlaylist() {
 		playlist.click();
 	}
 	
-	
+	public void back() {
+		driver.navigate().back();
+	}
 	
 	public void checkTitle(String page, String title) {
 		String actualTitle="";

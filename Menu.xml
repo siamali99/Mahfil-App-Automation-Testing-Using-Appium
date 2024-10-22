@@ -6,15 +6,8 @@
 	</listeners>
 	<test thread-count="5" name="Test Live Dashboard Functionality">
 		<classes>
-			<class name="MobileAutomation.Mahfil_app.privacy" />
+			<class name="MobileAutomation.Mahfil_app.LiveDashboard" />
 		</classes>
 	</test> 
-		<!--<test thread-count="5" name="Test Downloads Functionality">
-		<classes>
-			<class name="MobileAutomation.Mahfil_app.Downloads" />
-		</classes>
-	</test> -->
-	<!--
-	Test Menu Functionality -->
 </suite> <!--
 Menu -->

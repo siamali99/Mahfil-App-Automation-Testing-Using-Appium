@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>6/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sun Oct 20 12:22:50 BDT 2024</td>
+<td>Started on:</td><td>Tue Oct 22 13:10:35 BDT 2024</td>
 </tr>
-<tr><td>Total time:</td><td>58 seconds (58067 ms)</td>
+<tr><td>Total time:</td><td>27 seconds (27959 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,17 +76,14 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='MobileAutomation.Mahfil_app.watchHistory.watchedVideoSave()'><b>watchedVideoSave</b><br>Test class: MobileAutomation.Mahfil_app.watchHistory<br>Test method: Watch History Testcase 06: Check watched video is saved in Watch History</td>
-<td><div><pre>java.lang.AssertionError: Title didn&apos;t matched expected [Watch History
-1 videos] but found [Watch History
-12 videos]
-	at org.testng.Assert.fail(Assert.java:110)
-	at org.testng.Assert.failNotEquals(Assert.java:1577)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:149)
-	at org.testng.Assert.assertEquals(Assert.java:131)
-	at org.testng.Assert.assertEquals(Assert.java:655)
-	at MobileAutomation.Mahfil_app.menuPageLocators.checkTitle(menuPageLocators.java:214)
-	at MobileAutomation.Mahfil_app.watchHistory.watchedVideoSave(watchHistory.java:113)
+<td title='MobileAutomation.Mahfil_app.channelDescription.premiumUserGeneralVideoPlayCheck()'><b>premiumUserGeneralVideoPlayCheck</b><br>Test class: MobileAutomation.Mahfil_app.channelDescription<br>Test method: Channel Description Page Testcase 48: Check premium user can play general video from channel description page</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Can&apos;t locate an element by this strategy: By.chained({AppiumBy.accessibilityId: Related Videos})
+	at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:166)
+	at io.appium.java_client.pagefactory.interceptors.InterceptorOfASingleElement.call(InterceptorOfASingleElement.java:64)
+	at io.appium.java_client.proxy.Interceptor.intercept(Interceptor.java:78)
+	at org.openqa.selenium.remote.RemoteWebElement$ByteBuddy$GKHW5ISm.getAttribute(Unknown Source)
+	at MobileAutomation.Mahfil_app.channelDescriptionPageLocators.checkTitle(channelDescriptionPageLocators.java:290)
+	at MobileAutomation.Mahfil_app.channelDescription.premiumUserGeneralVideoPlayCheck(channelDescription.java:541)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -113,17 +110,40 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace271570717", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace271570717'><pre>java.lang.AssertionError: Title didn&apos;t matched expected [Watch History
-1 videos] but found [Watch History
-12 videos]
-	at org.testng.Assert.fail(Assert.java:110)
-	at org.testng.Assert.failNotEquals(Assert.java:1577)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:149)
-	at org.testng.Assert.assertEquals(Assert.java:131)
-	at org.testng.Assert.assertEquals(Assert.java:655)
-	at MobileAutomation.Mahfil_app.menuPageLocators.checkTitle(menuPageLocators.java:214)
-	at MobileAutomation.Mahfil_app.watchHistory.watchedVideoSave(watchHistory.java:113)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction@282240 (tried for 1 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:262)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at io.appium.java_client.pagefactory.AppiumElementLocator.waitFor(AppiumElementLocator.java:135)
+	at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:160)
+	... 31 more
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.chained({AppiumBy.accessibilityId: Related Videos})
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21&apos;
+Driver info: driver.version: RemoteWebDriver
+	at io.appium.java_client.pagefactory.bys.builder.ByChained.findElement(ByChained.java:77)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$1.findElement(ElementLocation.java:139)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at io.appium.java_client.pagefactory.bys.ContentMappedBy.findElement(ContentMappedBy.java:53)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$1.findElement(ElementLocation.java:139)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at io.appium.java_client.pagefactory.AppiumElementLocator.lambda$findElement$1(AppiumElementLocator.java:160)
+	at io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction.apply(AppiumElementLocator.java:217)
+	at io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction.apply(AppiumElementLocator.java:210)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:205)
+	... 33 more
+</pre></div><a href='#' onClick='toggleBox("stack-trace2048393198", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2048393198'><pre>org.openqa.selenium.NoSuchElementException: Can&apos;t locate an element by this strategy: By.chained({AppiumBy.accessibilityId: Related Videos})
+	at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:166)
+	at io.appium.java_client.pagefactory.interceptors.InterceptorOfASingleElement.call(InterceptorOfASingleElement.java:64)
+	at io.appium.java_client.proxy.Interceptor.intercept(Interceptor.java:78)
+	at org.openqa.selenium.remote.RemoteWebElement$ByteBuddy$GKHW5ISm.getAttribute(Unknown Source)
+	at MobileAutomation.Mahfil_app.channelDescriptionPageLocators.checkTitle(channelDescriptionPageLocators.java:290)
+	at MobileAutomation.Mahfil_app.channelDescription.premiumUserGeneralVideoPlayCheck(channelDescription.java:541)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -150,48 +170,35 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction@282240 (tried for 1 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:262)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at io.appium.java_client.pagefactory.AppiumElementLocator.waitFor(AppiumElementLocator.java:135)
+	at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:160)
+	... 31 more
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.chained({AppiumBy.accessibilityId: Related Videos})
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21&apos;
+Driver info: driver.version: RemoteWebDriver
+	at io.appium.java_client.pagefactory.bys.builder.ByChained.findElement(ByChained.java:77)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$1.findElement(ElementLocation.java:139)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at io.appium.java_client.pagefactory.bys.ContentMappedBy.findElement(ContentMappedBy.java:53)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$1.findElement(ElementLocation.java:139)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at io.appium.java_client.pagefactory.AppiumElementLocator.lambda$findElement$1(AppiumElementLocator.java:160)
+	at io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction.apply(AppiumElementLocator.java:217)
+	at io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction.apply(AppiumElementLocator.java:210)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:205)
+	... 33 more
 </pre></div></td>
-<td>8</td>
-<td>MobileAutomation.Mahfil_app.watchHistory@6a2b953e</td></tr>
-</table><p>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td><b>Attribute(s)</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.watchHistory.dashboardButtonCheck()'><b>dashboardButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.watchHistory<br>Test method: Watch History Testcase 02: Check Watch History button is working</td>
-<td></td>
-<td>3</td>
-<td>MobileAutomation.Mahfil_app.watchHistory@6a2b953e</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.watchHistory.searchButtonCheck()'><b>searchButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.watchHistory<br>Test method: Watch History Testcase 04: Check search button is working in Watch History page</td>
-<td></td>
-<td>3</td>
-<td>MobileAutomation.Mahfil_app.watchHistory@6a2b953e</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.watchHistory.notificationButtonCheck()'><b>notificationButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.watchHistory<br>Test method: Watch History Testcase 03: Check notification button is working in Watch History page</td>
-<td></td>
-<td>3</td>
-<td>MobileAutomation.Mahfil_app.watchHistory@6a2b953e</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.watchHistory.favouriteVideoPlay()'><b>favouriteVideoPlay</b><br>Test class: MobileAutomation.Mahfil_app.watchHistory<br>Test method: Watch History Testcase 07: Check video added to Watch History is playable</td>
-<td></td>
-<td>9</td>
-<td>MobileAutomation.Mahfil_app.watchHistory@6a2b953e</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.watchHistory.backButtonCheck()'><b>backButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.watchHistory<br>Test method: Watch History Testcase 05: Check back button is working from Watch History page</td>
-<td></td>
-<td>3</td>
-<td>MobileAutomation.Mahfil_app.watchHistory@6a2b953e</td></tr>
-<tr>
-<td title='MobileAutomation.Mahfil_app.watchHistory.removeButtonCheck()'><b>removeButtonCheck</b><br>Test class: MobileAutomation.Mahfil_app.watchHistory<br>Test method: Watch History Testcase 08: Check remove button is working</td>
-<td></td>
-<td>6</td>
-<td>MobileAutomation.Mahfil_app.watchHistory@6a2b953e</td></tr>
+<td>13</td>
+<td>MobileAutomation.Mahfil_app.channelDescription@71c3b41</td></tr>
 </table><p>
 </body>
 </html>

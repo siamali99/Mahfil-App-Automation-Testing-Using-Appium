@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="MobileAutomation.Mahfil_app.watchHistory">
+      <class name="MobileAutomation.Mahfil_app.channelDescription">
         <methods>
-          <include name="before"/>
-          <include name="watchedVideoSave"/>
-          <include name="home"/>
+          <include name="returnChannel"/>
           <include name="config"/>
+          <include name="premiumUserGeneralVideoPlayCheck"/>
+          <include name="before"/>
           <include name="closeConnection"/>
         </methods>
-      </class> <!-- MobileAutomation.Mahfil_app.watchHistory -->
+      </class> <!-- MobileAutomation.Mahfil_app.channelDescription -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
